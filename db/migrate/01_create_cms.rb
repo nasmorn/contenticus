@@ -20,7 +20,7 @@ class CreateCms < ActiveRecord::Migration
     add_index :contenticus_pages, :full_path, unique: true
     add_index :contenticus_pages, :ancestry
     
-    # -- Sections -----------------------------------------------------------
+    # -- Blocks -----------------------------------------------------------
     create_table :contenticus_blocks do |t|
       t.references :sectionable,  polymorphic: true
       t.string  :layout

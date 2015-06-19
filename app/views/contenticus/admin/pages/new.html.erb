@@ -1,0 +1,24 @@
+<h1> New Page </h1>
+
+<%= bootstrap_form_for @page, url: contenticus_admin_pages_path do |f| %>
+
+  <%= render 'layouts/contenticus/admin/formbar', f: f %>
+
+  <%= f.select :layout, Contenticus::PageLayout.available %>
+
+  <h2>Content</h2>
+
+  <%= f.fields_for :master_block, @page.master_block do |bf| %>
+
+    <% bf.object.tags.each do |name, options| %>
+      <%= field_for_tag(bf, name, options) %>
+    <% end %>
+    
+    <% @page.master_block.section_blocks("list").each do |block| %>
+      <%= bf.fields_for :blocks, block do |sf| %>
+        <%= sf.text_field :field_content %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+<% end %>

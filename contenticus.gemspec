@@ -3,8 +3,8 @@
 $:.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
-  s.name          = "comfortable_mexican_sofa"
-  s.version       = ComfortableMexicanSofa::VERSION
+  s.name          = "contenticus"
+  s.version       = "0.1"
   s.authors       = ["Roman Almeida"]
   s.email         = ["mr@romanalmeida.com"]
   s.homepage      = "http://github.com/nasmorn/contenticus"
@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails',                 '>= 4.0.0', '< 5'
   s.add_dependency 'rails-i18n',            '>= 4.0.0'
-  s.add_dependency 'rails-bootstrap-forms', '>= 2.3.0'
+  s.add_dependency 'pg'
+  s.add_dependency 'ancestry'
+  s.add_dependency 'bootstrap_form',        '>= 2.3.0'
   s.add_dependency 'jquery-rails',          '>= 3.0.0'
   s.add_dependency 'jquery-ui-rails',       '>= 5.0.0'
   s.add_dependency 'haml-rails',            '>= 0.3.0'

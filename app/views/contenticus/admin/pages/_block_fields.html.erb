@@ -1,0 +1,9 @@
+asdasdas
+<% form.object.section_blocks(name).each do |block| %>
+  <%= form.fields_for :blocks, block do |sf| %>
+    <% sf.object.tags.each do |name, options| %>
+      <%= field_for_tag(sf, name, options) %>
+    <% end %>
+  <% end %>
+<% end %>
+asdas

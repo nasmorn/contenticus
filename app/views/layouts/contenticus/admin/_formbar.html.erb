@@ -1,0 +1,9 @@
+<% buttons ||= ["save", "save_and_close", "close"] %>
+
+<% content_for :formbar do %>
+  <div id="formbar" class="navbar-inner">
+    <%= f.submit("Speichern", class: "btn btn-success") if buttons.include?("save") %>
+    <%= f.submit("Speichern und Schließen", class: "btn btn-success") if buttons.include?("save_and_close") %>
+    <%= link_to("Schließen", {action: "index"}, class: "btn btn-default") if buttons.include?("close") %>
+  </div>
+<% end %>
