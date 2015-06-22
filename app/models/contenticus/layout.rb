@@ -1,6 +1,7 @@
 class Contenticus::Layout
 
   def initialize(identifier, type)
+    raise "No Identifier given" if identifier.blank?
     @identifier = identifier
     @type = type
   end

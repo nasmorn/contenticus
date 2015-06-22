@@ -4,21 +4,24 @@
 
   <%= render 'layouts/contenticus/admin/formbar', f: f %>
 
-  <%= f.select :layout, Contenticus::PageLayout.available %>
+  <%= f.fields_for :slug, @page.slug do |f| %>
 
-  <h2>Content</h2>
+    <%= f.text_field :label %>
 
-  <%= f.fields_for :master_block, @page.master_block do |bf| %>
+    <%= f.text_field :slug %>
 
-    <% bf.object.tags.each do |name, options| %>
-      <%= field_for_tag(bf, name, options) %>
+  <% end %>
+
+  <%= f.fields_for :master_block, @page.master_block do |f| %>
+    <%= f.select :locale, Contenticus::Block::LOCALES %>  
+    <%= f.select :layout, Contenticus::PageLayout.available %>
+
+    <h2>Content</h2>
+
+    <% f.object.tags.each do |name, options| %>
+      <%= field_for_tag(f, name, options) %>
     <% end %>
-    
-    <% @page.master_block.section_blocks("list").each do |block| %>
-      <%= bf.fields_for :blocks, block do |sf| %>
-        <%= sf.text_field :field_content %>
-      <% end %>
-    <% end %>
+
   <% end %>
 
 <% end %>

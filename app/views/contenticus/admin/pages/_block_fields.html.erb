@@ -1,9 +1,11 @@
-asdasdas
+- BEGIN: <%= name %>
 <% form.object.section_blocks(name).each do |block| %>
-  <%= form.fields_for :blocks, block do |sf| %>
-    <% sf.object.tags.each do |name, options| %>
-      <%= field_for_tag(sf, name, options) %>
+  <%= form.fields_for :blocks, block do |f| %>
+    <%= f.hidden_field :layout %>
+    <%= f.hidden_field :section %>
+    <% f.object.tags.each do |name, options| %>
+      <%= field_for_tag(f, name, options) %>
     <% end %>
   <% end %>
 <% end %>
-asdas
+- END: <%= name %>

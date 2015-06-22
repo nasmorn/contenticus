@@ -3,3 +3,9 @@
 </h1>
 
 <%= link_to "New Page", new_contenticus_admin_page_path, class: "btn btn-large btn-primary" %>
+
+<ul class="list sortable">
+  <% @pages.each do |page, children| %>
+    <%= render partial: 'index_branch', object: page %>
+  <% end %>
+</ul>

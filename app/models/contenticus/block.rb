@@ -1,9 +1,22 @@
 class Contenticus::Block < ActiveRecord::Base
   self.table_name = "contenticus_blocks"
 
+  LOCALES = ["de", "en"]
+
   # Relationships
   belongs_to :sectionable, polymorphic: true
-  has_many :blocks, class: Contenticus::Block, foreign_key: :sectionable_id
+  has_many :blocks, as: :sectionable
+  accepts_nested_attributes_for :blocks
+
+  # Callbacks
+  before_validation :assign_locales
+
+  # Assign the locales of child block unless they are already set
+  def assign_locales
+    blocks.each do |block|
+      block.locale ||= self.locale
+    end
+  end
 
   def field_names
     get_layout.tags.keys
@@ -24,7 +37,7 @@ class Contenticus::Block < ActiveRecord::Base
     method_name.gsub!('field_', '')
     field_name = method_name.gsub('=', '')
 
-    return super unless field_names.include?(field_name)
+    #return super unless field_names.include?(field_name)
 
     if method_name.chars.last == "="
       self.fields[field_name] = arguments.first
