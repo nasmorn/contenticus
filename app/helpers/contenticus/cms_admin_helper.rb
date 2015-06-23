@@ -7,4 +7,5 @@ module Contenticus::CmsAdminHelper
       render "contenticus/admin/pages/block_fields", form: form, name: name
     end
   end
+
 end

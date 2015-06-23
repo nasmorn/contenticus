@@ -8,4 +8,20 @@ class Contenticus::Page < ActiveRecord::Base
   has_one :slug, as: :sluggable
   accepts_nested_attributes_for :slug
 
+  def self.options_for_select(current_page)
+    options = []
+    ::Contenticus::Slug.includes(:sluggable).arrange.each do |k,v|
+      option_for_select k, v, options, 0, current_page
+    end
+    options
+  end 
+
+  def self.option_for_select(slug, children, options, depth, current_page)
+    return if current_page.id == slug.sluggable.id
+    options << [(".." * depth) + " " + slug.label, slug.id]
+    children.each do |k,v|
+      option_for_select k, v, options, depth + 1, current_page
+    end
+  end
+
 end

@@ -1,11 +1,12 @@
 <h1>
+  <%= link_to("New Page", new_contenticus_admin_page_path, class: "btn btn-large btn-default pull-right") if @pages.empty? %>  
   Pages
 </h1>
 
-<%= link_to "New Page", new_contenticus_admin_page_path, class: "btn btn-large btn-primary" %>
+<hr>
 
 <ul class="list sortable">
   <% @pages.each do |page, children| %>
-    <%= render partial: 'index_branch', object: page %>
+    <%= render partial: 'index_branch', object: page, locals: {children: children } %>
   <% end %>
 </ul>
