@@ -15,7 +15,14 @@ module Contenticus::CmsHelper
   end
 
   def cms_rich_text(identifier, object)
-    object.fields[identifier.to_s]
+    object.fields[identifier.to_s].html_safe
+  end
+
+  def cms_image(identifier, object)
+    if Contenticus::File.exists?(object.fields[identifier.to_s])
+      file = Contenticus::File.find(object.fields[identifier.to_s])
+      image_tag file.file.thumb("400x300#").url
+    end
   end
 
 end

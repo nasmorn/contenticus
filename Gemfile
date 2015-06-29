@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 gem 'ancestry' # Should load from gemspec
+gem 'dragonfly', '~> 1.0.10'
+gem 'jcrop-rails-v2'
 gem 'turbolinks'
 
 group :development, :test do

@@ -8,6 +8,12 @@ window.CMS.init = ->
   CMS.sortable_list()
   CMS.sortable_sections()
   CMS.wysiwyg()
+  $('.jcrop').Jcrop({
+    aspectRatio: 4/3,
+    onSelect: window.updateJcrop,
+    boxWidth: 800,
+    boxHeight: 600
+    })
 
 window.CMS.sortable_list = ->
   $('ul.sortable').sortable
@@ -44,3 +50,10 @@ window.CMS.wysiwyg = ->
     # plugins:          ['imagemanager', 'filemanager', 'table', 'video', 'definedlinks']
     lang:             "en"
     convertDivs:      false
+
+window.updateJcrop = (c) ->
+  $(this).parents(".imageform").hide()
+  $(this).parents(".imageform").children(".crop_x").val(c.x)
+  $(".crop_y").val(c.y)
+  $(".crop_h").val(c.h)
+  $(".crop_w").val(c.w)

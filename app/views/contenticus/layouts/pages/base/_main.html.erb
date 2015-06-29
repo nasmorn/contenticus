@@ -1,12 +1,11 @@
 <h1> Text: <%= cms_field(:title, page) %> </h1>
 <%= cms_field(:sub_title, page) %>
 
-<ul>
-  <%= cms_section("list", page) %>
-</ul>
+<%= cms_image(:bild, page) %>
 
-<%= cms_section("list", page, "br") %>
+
+  <%= cms_section("list", page) %>
+
 
 <%= cms_field(:the_end, page) %>
 
-<%= cms_section("notlist", page, "br") %>

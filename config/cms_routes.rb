@@ -5,11 +5,11 @@ Contenticus::Application.routes.draw do
       resources :pages do
         put :reorder,         :on => :collection
       end
-      resources :blocks do
-      end
+      resources :blocks
+      resources :files
     end
-  end
 
-  root "contenticus/pages#index"
+    get '/:format' => 'pages#show', :as => 'render_page', :path => "(*cms_path)"
+  end
 
 end

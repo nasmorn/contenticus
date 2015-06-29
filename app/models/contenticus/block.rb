@@ -3,6 +3,8 @@ class Contenticus::Block < ActiveRecord::Base
 
   LOCALES = ["de", "en"]
 
+  serialize :fields, JsonSerializer
+
   # Relationships
   belongs_to :sectionable, polymorphic: true
   has_many :blocks, as: :sectionable
@@ -36,9 +38,8 @@ class Contenticus::Block < ActiveRecord::Base
     return super unless method_name =~ /field_\w+/
 
     method_name.gsub!('field_', '')
+    #method_name.gsub!('hash_', '')
     field_name = method_name.gsub('=', '')
-
-    #return super unless field_names.include?(field_name)
 
     if method_name.chars.last == "="
       self.fields[field_name] = arguments.first
@@ -46,6 +47,7 @@ class Contenticus::Block < ActiveRecord::Base
       self.fields[field_name]
     end
   end
+
 
   def section_layouts
     ['col_2', 'list', 'ul']

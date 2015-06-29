@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require turbolinks
+//= require jquery.Jcrop
 //= require contenticus/admin/vendor/redactor
 //= require contenticus/admin/base
 //= require contenticus/admin/formbar
