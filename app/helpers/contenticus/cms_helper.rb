@@ -14,4 +14,8 @@ module Contenticus::CmsHelper
     object.fields[identifier.to_s]
   end
 
+  def cms_rich_text(identifier, object)
+    object.fields[identifier.to_s]
+  end
+
 end

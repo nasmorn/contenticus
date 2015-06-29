@@ -6,10 +6,11 @@ class Contenticus::Block < ActiveRecord::Base
   # Relationships
   belongs_to :sectionable, polymorphic: true
   has_many :blocks, as: :sectionable
-  accepts_nested_attributes_for :blocks
+  accepts_nested_attributes_for :blocks, allow_destroy: true
 
   # Callbacks
   before_validation :assign_locales
+  validates_presence_of :layout, :section
 
   # Assign the locales of child block unless they are already set
   def assign_locales
@@ -27,7 +28,7 @@ class Contenticus::Block < ActiveRecord::Base
   end
 
   def section_blocks(identifier)
-    blocks.select {|b| b.section == identifier}
+    blocks.select {|b| b.section == identifier}.sort_by(&:position)
   end
   
   def method_missing(method_sym, *arguments, &block)
@@ -44,6 +45,14 @@ class Contenticus::Block < ActiveRecord::Base
     else
       self.fields[field_name]
     end
+  end
+
+  def section_layouts
+    ['col_2', 'list', 'ul']
+  end
+
+  def master?
+    section == "master"
   end
 
   def get_layout
@@ -63,14 +72,14 @@ class Contenticus::Block < ActiveRecord::Base
     block.layout = layout
     block.section = "master" if master
 
-    # Create first block in sections
-    layout = get_layout(layout, master)   
-    layout.tags.each do |name, options|
-      if options[:type] == "cms_section"
-        block.blocks << from_layout(name) 
-        block.blocks.last.section = name
-      end
-    end
+    # # Create first block in sections
+    # layout = get_layout(layout, master)   
+    # layout.tags.each do |name, options|
+    #   if options[:type] == "cms_section"
+    #     block.blocks << from_layout(name) 
+    #     block.blocks.last.section = name
+    #   end
+    # end
 
     return block
   end

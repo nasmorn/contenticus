@@ -4,4 +4,8 @@ class Contenticus::BlockLayout < Contenticus::Layout
     super identifier, "blocks"
   end
 
+  def self.available
+    available_for("blocks")
+  end
+
 end

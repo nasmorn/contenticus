@@ -2,5 +2,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require turbolinks
+//= require contenticus/admin/vendor/redactor
 //= require contenticus/admin/base
 //= require contenticus/admin/formbar
+//= require contenticus/admin/add_fields
+//= require contenticus/admin/layout_switch

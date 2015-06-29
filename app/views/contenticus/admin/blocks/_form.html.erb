@@ -1,0 +1,25 @@
+<div class="panel panel-default fields">
+  <%= form.fields_for :blocks, block do |f| %>
+    <%= f.hidden_field :position, class: 'position' %>
+    <div class="panel-heading">
+      <%= f.hidden_field :_destroy %>
+      <%= content_tag :button, class: "btn btn-xs remove-fields pull-right", onclick: "return remove_fields(this)" do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+
+      <span class="dragger icon">
+        <span class="glyphicon glyphicon-move"></span>
+      </span>      
+      <div class="item-content">
+        <%= block.layout.titleize %>  
+      </div>          
+    </div>
+    <div class="panel-body">      
+      <%= f.hidden_field :layout %>
+      <%= f.hidden_field :section %>
+      <% f.object.tags.each do |name, options| %>
+        <%= field_for_tag(f, name, options) %>
+      <% end %>
+   </div>
+ <% end %>
+</div>

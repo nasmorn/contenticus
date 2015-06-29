@@ -1,0 +1,18 @@
+<section>
+  <hr>
+  <h3> Section: <%= name.titleize %> </h3>
+  <div class="fields-wrapper sortable">
+  <% form.object.section_blocks(name).each do |block| %>
+    <%= render 'contenticus/admin/blocks/form', form: form, block: block %>
+  <% end %>
+  </div>
+
+  <div class="btn-group" role="group">
+    <% form.object.section_layouts.each do |layout| %>
+      <%= content_tag :button, class: "btn btn-primary add-block-to-section", data_url: new_contenticus_admin_block_path(layout: layout, section: name) do %>
+        <%= layout %>
+      <% end %>      
+    <% end %>
+  </div>
+  <hr>
+</section>

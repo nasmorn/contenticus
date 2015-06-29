@@ -1,6 +1,6 @@
 <h1> Edit Page </h1>
 
-<%= bootstrap_form_for @page, url: contenticus_admin_page_path, method: 'put' do |f| %>
+<%= bootstrap_form_for @page, url: contenticus_admin_page_path, method: 'put', layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f| %>
 
   <%= render 'layouts/contenticus/admin/formbar', f: f %>
 

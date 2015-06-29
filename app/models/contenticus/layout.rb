@@ -26,7 +26,7 @@ class Contenticus::Layout
     tags = {}
     File.open(File.expand_path(path, Rails.root), 'r') do |file|
       file.each_line do |line|
-        if line =~ /<%=\s*(cms_field|cms_section)/
+        if line =~ /<%=\s*(cms_field|cms_section|cms_rich_text)/
           line.scan(/<%=\s*([^%>]+)%>/).collect {|t| parse_tag t.first, tags}
         end
       end
@@ -38,14 +38,6 @@ class Contenticus::Layout
     tag = tag.gsub("<%=", '').gsub('%>','').gsub('(',' ').gsub(')','').strip
     tokens = tag.split(/\s+|,\s*/)
     tags[eval(tokens.second).to_s] = {type: tokens.first}
-  end
-
-  def self.tag_type(method_name)
-    if method_name == "cms_field"
-      "string"
-    elsif method_name == "cms_section"
-      "section"
-    end
   end
 
 end

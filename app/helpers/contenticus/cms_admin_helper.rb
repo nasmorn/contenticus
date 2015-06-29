@@ -4,7 +4,9 @@ module Contenticus::CmsAdminHelper
     if options[:type] == "cms_field"
       form.text_field "field_#{name}"
     elsif options[:type] == "cms_section"
-      render "contenticus/admin/pages/block_fields", form: form, name: name
+      render "contenticus/admin/pages/section_fields", form: form, name: name
+    elsif options[:type] == "cms_rich_text"
+      form.text_area "field_#{name}", class: "rich-text-editor"
     end
   end
 

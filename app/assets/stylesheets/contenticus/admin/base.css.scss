@@ -10,6 +10,24 @@
   padding-top: 80px;
 }
 
+.sortable {
+
+  .item-content {
+    margin-left: 60px;
+    .item-title {
+      font-size: 16px;
+    }
+    .item-meta {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+
+  .icon {
+    position: absolute;
+  }
+}
+
 ul.list {
   padding: 0;
   margin: 0;
@@ -32,8 +50,7 @@ ul.list {
     }
   }
 
-  .icon {
-    position: absolute;
+  .icon {  
     font-size: 36px;
     left: 20px;
     top: 3px;
@@ -51,16 +68,13 @@ ul.list {
       }      
     }
   }
+}
 
-
-  .item-content {
-    margin-left: 60px;
-    .item-title {
-      font-size: 16px;
-    }
-    .item-meta {
-      font-size: 14px;
-      line-height: 14px;
-    }
+section .fields {
+  position: relative;
+  .icon {
+    left: 20px;
+    font-size: 30px;
+    top: 2px;
   }
 }
