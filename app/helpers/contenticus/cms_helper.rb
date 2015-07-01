@@ -19,8 +19,8 @@ module Contenticus::CmsHelper
   end
 
   def cms_image(identifier, object)
-    if Contenticus::File.exists?(object.fields[identifier.to_s])
-      file = Contenticus::File.find(object.fields[identifier.to_s])
+    if Contenticus::Image.exists?(object.fields[identifier.to_s])
+      file = Contenticus::Image.find(object.fields[identifier.to_s])
       image_tag file.file.thumb("400x300#").url
     end
   end

@@ -5,8 +5,10 @@ class Contenticus::Page < ActiveRecord::Base
   has_one :master_block, -> { where(section: "master") }, class_name: Contenticus::Block, foreign_key: :sectionable_id
   accepts_nested_attributes_for :master_block
 
-  has_one :slug, as: :sluggable
+  has_one :slug, as: :sluggable, class_name: ::Contenticus::Slug
   accepts_nested_attributes_for :slug
+
+  # Validations
 
   def self.options_for_select(current_page)
     options = []

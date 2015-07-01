@@ -9,7 +9,7 @@ module Contenticus::CmsAdminHelper
     when "cms_rich_text"
       form.text_area "field_#{name}", class: "rich-text-editor"
     when "cms_image"      
-      render "contenticus/admin/files/image_fields", form: form, name: name
+      render "contenticus/admin/images/image_fields", form: form, name: name
     end
   end
 

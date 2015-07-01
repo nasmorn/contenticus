@@ -6,7 +6,7 @@ Contenticus::Application.routes.draw do
         put :reorder,         :on => :collection
       end
       resources :blocks
-      resources :files
+      resources :images
     end
 
     get '/:format' => 'pages#show', :as => 'render_page', :path => "(*cms_path)"

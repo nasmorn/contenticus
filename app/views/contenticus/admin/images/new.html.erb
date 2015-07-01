@@ -1,0 +1,9 @@
+<h1> New File </h1>
+
+<%= bootstrap_form_for @image, url: contenticus_admin_images_path, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f| %>
+
+  <%= render 'layouts/contenticus/admin/formbar', f: f %>
+
+  <%= render 'form', f: f %>
+
+<% end %>

@@ -1,0 +1,26 @@
+<h1>
+  <%= link_to("Upload New Image", new_contenticus_admin_image_path, class: "btn btn-large btn-default pull-right") %>  
+  Images
+</h1>
+
+<hr>
+
+<ul class="list">
+<% @images.each do |image| %>
+  
+  <li class="item">
+
+    <%= image_tag image.file.thumb("50x50#").url %> 
+    <div class="btn-group">
+      <%= link_to "Edit", edit_contenticus_admin_image_path(image), class: "btn btn-default" %>
+    </div>
+
+    <div class="item-content">
+      <div class="item-title">
+        <%= image.file_name %>
+      </div>
+    </div>
+  </li>
+
+<% end %>
+</ul>

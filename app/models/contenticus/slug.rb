@@ -8,15 +8,26 @@ class Contenticus::Slug < ActiveRecord::Base
   # Callbacks
 
   before_validation :escape_slug,
-                    :assign_full_path
+                    :assign_full_path,
+                    :assign_empty_slug
 
   validates_uniqueness_of :full_path, scope: :domain
+  validates_presence_of :label
+
+  validates :slug,
+    presence: true,
+    uniqueness: { :scope => :parent },
+    unless: lambda { |p| self.root? }  
 
 
   def assign_full_path
     self.full_path = self.parent ?
       [CGI::escape(self.parent.full_path).gsub('%2F', '/'), self.slug].join('/').squeeze('/') :
       '/'
+  end
+
+  def assign_empty_slug
+    self.slug = "" if slug.nil?
   end
 
   def escape_slug
