@@ -26,7 +26,7 @@ window.CMS.sortable_sections = ->
   $('.fields-wrapper.sortable').sortable
     handle: 'span.dragger'
     axis:   'y'
-    update: (event, ui)-> 
+    update: (event, ui)->
       i = 0
       $(item).children(".position").val(i++) for item in $(this).children(".panel")
 
@@ -52,8 +52,8 @@ window.CMS.wysiwyg = ->
     convertDivs:      false
 
 window.updateJcrop = (c) ->
-  $(this).parents(".imageform").hide()
-  $(this).parents(".imageform").children(".crop_x").val(c.x)
-  $(".crop_y").val(c.y)
-  $(".crop_h").val(c.h)
-  $(".crop_w").val(c.w)
+  image_form = this.ui.holder.parent()
+  image_form.children(".crop_x").val(c.x)
+  image_form.children(".crop_y").val(c.y)
+  image_form.children(".crop_h").val(c.h)
+  image_form.children(".crop_w").val(c.w)

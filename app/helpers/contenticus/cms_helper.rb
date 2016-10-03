@@ -19,10 +19,18 @@ module Contenticus::CmsHelper
   end
 
   def cms_image(identifier, object)
-    if Contenticus::Image.exists?(object.fields[identifier.to_s])
-      file = Contenticus::Image.find(object.fields[identifier.to_s])
-      image_tag file.file.thumb("400x300#").url
+    image = object.fields[identifier.to_s]
+    image_id = image["image_id"]
+    if Contenticus::Image.exists?(image["image_id"])
+      file = Contenticus::Image.find(image["image_id"])
+      image_tag file.file.thumb(crop_command(image)).url
     end
+  end
+
+  private
+
+  def crop_command(image)
+    "%ix%i+%i+%i" % [image['crop_w'], image['crop_h'], image['crop_x'], image['crop_y']].map(&:to_i)
   end
 
 end
