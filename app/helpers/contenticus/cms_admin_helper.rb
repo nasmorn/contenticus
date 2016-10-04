@@ -10,7 +10,8 @@ module Contenticus::CmsAdminHelper
       form.text_area "field_#{name}", class: "rich-text-editor"
     when "cms_image"
       aspect = options.fetch(:aspect, "4:3").split(":").map(&:to_f)
-      render "contenticus/admin/images/image_fields", form: form, name: name, aspect: aspect
+      min_size = options.fetch(:min_size, "0x0")
+      render "contenticus/admin/images/image_fields", form: form, name: name, aspect: aspect, min_size: min_size
     end
   end
 

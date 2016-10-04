@@ -56,6 +56,7 @@ window.Jcrop.update = (c) ->
 
 window.Jcrop.init = =>
   $(".jcrop").each ->
+    min_size = $(this).attr("min_size").split("x")
     crop_x = parseInt($(this).parent().children(".crop_x").val())
     crop_y = parseInt($(this).parent().children(".crop_y").val())
     crop_vals = [crop_x,
@@ -69,4 +70,5 @@ window.Jcrop.init = =>
       boxWidth: 800,
       boxHeight: 600,
       setSelect: crop_vals,
+      minSize: min_size,
       })
