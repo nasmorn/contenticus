@@ -8,8 +8,9 @@ module Contenticus::CmsAdminHelper
       render "contenticus/admin/pages/section_fields", form: form, name: name
     when "cms_rich_text"
       form.text_area "field_#{name}", class: "rich-text-editor"
-    when "cms_image"      
-      render "contenticus/admin/images/image_fields", form: form, name: name
+    when "cms_image"
+      aspect = options.fetch(:aspect, "4:3").split(":").map(&:to_f)
+      render "contenticus/admin/images/image_fields", form: form, name: name, aspect: aspect
     end
   end
 

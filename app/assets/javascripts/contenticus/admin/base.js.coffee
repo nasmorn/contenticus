@@ -1,19 +1,15 @@
 window.CMS ||= {}
+window.Jcrop ||= {}
 
 $(document).on 'page:restore page:load ready', ->
   window.CMS.current_path = window.location.pathname
   window.CMS.init()
+  window.Jcrop.init()
 
 window.CMS.init = ->
   CMS.sortable_list()
   CMS.sortable_sections()
   CMS.wysiwyg()
-  $('.jcrop').Jcrop({
-    aspectRatio: 4/3,
-    onSelect: window.updateJcrop,
-    boxWidth: 800,
-    boxHeight: 600
-    })
 
 window.CMS.sortable_list = ->
   $('ul.sortable').sortable
@@ -51,9 +47,24 @@ window.CMS.wysiwyg = ->
     lang:             "en"
     convertDivs:      false
 
-window.updateJcrop = (c) ->
-  image_form = this.ui.holder.parent()
+window.Jcrop.update = (c) ->
+  image_form = this.parent()
   image_form.children(".crop_x").val(c.x)
   image_form.children(".crop_y").val(c.y)
   image_form.children(".crop_h").val(c.h)
   image_form.children(".crop_w").val(c.w)
+
+window.Jcrop.init = =>
+  $(".jcrop").each ->
+    crop_vals = [$(this).parent().children(".crop_x").val(),
+                $(this).parent().children(".crop_y").val(),
+                $(this).parent().children(".crop_h").val()
+                $(this).parent().children(".crop_w").val()]
+    console.log $(this).attr("data_aspect")
+    $(this).Jcrop({
+      aspectRatio: $(this).attr("data_aspect"),
+      onSelect: window.Jcrop.update.bind($(this)),
+      boxWidth: 800,
+      boxHeight: 600,
+      setSelect: crop_vals,
+      })

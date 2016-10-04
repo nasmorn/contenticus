@@ -19,25 +19,8 @@ class Contenticus::Layout
   end
 
   def tags
-    Contenticus::Layout.parse 'app/views/contenticus/' + path + "/_main.html.erb"
+    Contenticus::LayoutParser.new('app/views/contenticus/' + path + "/_main.html.erb").tags
   end
 
-  def self.parse(path)
-    tags = {}
-    File.open(File.expand_path(path, Rails.root), 'r') do |file|
-      file.each_line do |line|
-        if line =~ /<%=\s*(cms_field|cms_section|cms_rich_text|cms_image)/
-          line.scan(/<%=\s*([^%>]+)%>/).collect {|t| parse_tag t.first, tags}
-        end
-      end
-    end
-    return tags
-  end
-
-  def self.parse_tag(tag, tags)
-    tag = tag.gsub("<%=", '').gsub('%>','').gsub('(',' ').gsub(')','').strip
-    tokens = tag.split(/\s+|,\s*/)
-    tags[eval(tokens.second).to_s] = {type: tokens.first}
-  end
 
 end

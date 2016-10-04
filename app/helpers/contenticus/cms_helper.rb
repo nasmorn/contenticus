@@ -18,7 +18,7 @@ module Contenticus::CmsHelper
     object.fields[identifier.to_s].html_safe
   end
 
-  def cms_image(identifier, object)
+  def cms_image(identifier, object, options)
     image = object.fields[identifier.to_s]
     image_id = image["image_id"]
     if Contenticus::Image.exists?(image["image_id"])
