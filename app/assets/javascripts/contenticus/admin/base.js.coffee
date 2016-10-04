@@ -56,11 +56,13 @@ window.Jcrop.update = (c) ->
 
 window.Jcrop.init = =>
   $(".jcrop").each ->
-    crop_vals = [$(this).parent().children(".crop_x").val(),
-                $(this).parent().children(".crop_y").val(),
-                $(this).parent().children(".crop_h").val()
-                $(this).parent().children(".crop_w").val()]
-    console.log $(this).attr("data_aspect")
+    crop_x = parseInt($(this).parent().children(".crop_x").val())
+    crop_y = parseInt($(this).parent().children(".crop_y").val())
+    crop_vals = [crop_x,
+                 crop_y,
+                 crop_x + parseInt($(this).parent().children(".crop_w").val()),
+                 crop_y + parseInt($(this).parent().children(".crop_h").val())]
+    console.log crop_vals
     $(this).Jcrop({
       aspectRatio: $(this).attr("data_aspect"),
       onSelect: window.Jcrop.update.bind($(this)),

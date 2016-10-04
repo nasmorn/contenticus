@@ -2,10 +2,10 @@
   <%= form.fields_for "field_#{name}",  OpenStruct.new(form.object.send("field_#{name}")) do |image_form| %>
     Image id: <%= image_form.text_field_without_bootstrap :image_id %> <br>
 
-    <%= image_form.hidden_field :crop_x, class: "crop_x" %>
-    <%= image_form.hidden_field :crop_y, class: "crop_y" %>
-    <%= image_form.hidden_field :crop_h, class: "crop_h" %>
-    <%= image_form.hidden_field :crop_w, class: "crop_w" %>
+    <%= image_form.text_field_without_bootstrap :crop_x, class: "crop_x" %>
+    <%= image_form.text_field_without_bootstrap :crop_y, class: "crop_y" %>
+    <%= image_form.text_field_without_bootstrap :crop_h, class: "crop_h" %>
+    <%= image_form.text_field_without_bootstrap :crop_w, class: "crop_w" %>
 
     <% if Contenticus::Image.exists?(image_form.object[:image_id]) %>
       <%= image_tag Contenticus::Image.find(image_form.object[:image_id]).file.url, class: "jcrop" , data_aspect: aspect.first/aspect.second %>
