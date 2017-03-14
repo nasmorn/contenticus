@@ -1,7 +1,7 @@
 window.CMS ||= {}
 window.Jcrop ||= {}
 
-$(document).on 'page:restore page:load ready', ->
+$(document).on 'turbolinks:load', ->
   window.CMS.current_path = window.location.pathname
   window.CMS.init()
 

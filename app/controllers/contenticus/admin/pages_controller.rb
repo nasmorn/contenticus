@@ -23,7 +23,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   end
 
   def update
-    @page, @tags = ::Contenticus::Admin::UpdatePage.call(page_id: params[:id], tag_params: page_params)
+    @page, @tags = ::Contenticus::Admin::UpdatePage.call(id: params[:id], tag_params: page_params)
     if @page.errors.empty? && params[:close_after_save] == "close"
       redirect_to contenticus_admin_pages_path
     else
@@ -50,7 +50,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   end
 
   def create_block_params
-    page_params.fetch(:block).permit(:layout, :locale)
+    page_params.fetch(:block).permit(:layout)
   end
 
   def page_params

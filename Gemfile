@@ -5,6 +5,7 @@ gem 'ancestry' # Should load from gemspec
 gem 'dragonfly', '~> 1.0.10'
 gem 'jcrop-rails-v2'
 gem 'turbolinks'
+gem 'rake', '~> 10.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

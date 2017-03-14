@@ -2,8 +2,8 @@ module Contenticus
 module Admin
 class UpdatePage < ::Contenticus::Interactor
 
-  def initialize(page_id:, tag_params:)
-    @page = ::Contenticus::Page.find(page_id)
+  def initialize(id:, tag_params:)
+    @page = ::Contenticus::Page.find(id)
     @params = tag_params
   end
 

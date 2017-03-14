@@ -25,23 +25,23 @@ class Contenticus::Admin::SnippetsController < Contenticus::Admin::BaseControlle
   end
 
   def update
-    @page, @tags = ::Contenticus::Admin::UpdatePage.call(page_id: params[:id], tag_params: page_params)
-    if @page.errors.empty? && save_and_close?
-      redirect_to contenticus_admin_pages_path
+    @snippet, @tags = ::Contenticus::Admin::UpdateSnippet.call(id: params[:id], tag_params: snippet_params)
+    if save_and_close?
+      redirect_to contenticus_admin_snippets_path
     else
       render 'edit'
     end
   end
 
   def destroy
-    ::Contenticus::Admin::DestroyPage.call(page_id: params[:id])
+    ::Contenticus::Snippet.find(params[:id]).destroy
     redirect_to contenticus_admin_pages_path
   end
 
   private
 
   def create_block_params
-    snippet_params.fetch(:block).permit(:layout, :locale)
+    snippet_params.fetch(:block).permit(:layout)
   end
 
   def snippet_params
