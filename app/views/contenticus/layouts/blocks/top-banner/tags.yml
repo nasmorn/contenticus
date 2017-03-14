@@ -1,0 +1,10 @@
+url:
+  key: 'url'
+  name: 'Ziel'
+text_field: titel
+image_field:
+  key: bild
+  name: Schönes Bild
+  comment: Wirklich schönes Bild aussuchen bitte
+  aspect_ratio: '14:3'
+  min_size: '700x150'

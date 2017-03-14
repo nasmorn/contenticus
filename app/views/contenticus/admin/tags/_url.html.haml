@@ -1,0 +1,3 @@
+= form.fields_for tag.key, tag do |tag_form|
+  = tag_form.select :slug_id, options_for_select(Contenticus::Slug.all.pluck(:label, :id), :slug_id), label: 'Interne Seite'
+  = tag_form.text_field :href, label: 'Beliebige Url'

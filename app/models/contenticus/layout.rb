@@ -1,9 +1,10 @@
 class Contenticus::Layout
 
-  def initialize(identifier, type)
+  def initialize(identifier, fields, type)
     raise "No Identifier given" if identifier.blank?
     @identifier = identifier
     @type = type
+    @fields = fields
   end
 
   def path
@@ -19,25 +20,15 @@ class Contenticus::Layout
   end
 
   def tags
-    Contenticus::Layout.parse 'app/views/contenticus/' + path + "/_main.html.erb"
+   parse 'app/views/contenticus/' + path + "/tags.yml"
   end
 
-  def self.parse(path)
-    tags = {}
-    File.open(File.expand_path(path, Rails.root), 'r') do |file|
-      file.each_line do |line|
-        if line =~ /<%=\s*(cms_field|cms_section|cms_rich_text|cms_image)/
-          line.scan(/<%=\s*([^%>]+)%>/).collect {|t| parse_tag t.first, tags}
-        end
-      end
+  def parse(path)
+    tags = []
+    YAML.load(File.read(File.expand_path(path, Rails.root))).each do |k,v|
+      tags << ::Contenticus::Tags::Base.instantiate(@fields,k,v)
     end
-    return tags
-  end
-
-  def self.parse_tag(tag, tags)
-    tag = tag.gsub("<%=", '').gsub('%>','').gsub('(',' ').gsub(')','').strip
-    tokens = tag.split(/\s+|,\s*/)
-    tags[eval(tokens.second).to_s] = {type: tokens.first}
+    tags
   end
 
 end

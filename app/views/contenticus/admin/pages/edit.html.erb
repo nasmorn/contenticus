@@ -4,6 +4,8 @@
 
   <%= render 'layouts/contenticus/admin/formbar', f: f %>
 
-  <%= render 'form', f: f %>
+  <% @tags.each do |tag| %>
+    <%= field_for_tag(f, tag) %>
+  <% end %>
 
 <% end %>

@@ -1,0 +1,14 @@
+text_field: title
+
+section: top-banner
+
+image_field:
+  key: bild
+  name: Schönes Bild
+  comment: Wirklich schönes Bild aussuchen bitte
+  aspect_ratio: '14:3'
+  min_size: '700x150'
+
+select:
+  key: Seite
+  model: contenticus/slug

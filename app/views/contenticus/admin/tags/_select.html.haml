@@ -1,0 +1,2 @@
+= form.fields_for tag.key, tag do |tag_form|
+  = tag_form.select :value, options_for_select(tag.options), label: tag.name

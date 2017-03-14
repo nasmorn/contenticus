@@ -1,7 +1,7 @@
 class Contenticus::BlockLayout < Contenticus::Layout
 
-  def initialize(identifier)
-    super identifier, "blocks"
+  def initialize(identifier, block)
+    super identifier, block, "blocks"
   end
 
   def self.available

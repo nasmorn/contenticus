@@ -9,16 +9,16 @@
 
       <span class="dragger icon">
         <span class="glyphicon glyphicon-move"></span>
-      </span>      
+      </span>
       <div class="item-content">
-        <%= block.layout.titleize %>  
-      </div>          
+        <%= block.layout.titleize %>
+      </div>
     </div>
-    <div class="panel-body">      
+    <div class="panel-body">
       <%= f.hidden_field :layout %>
       <%= f.hidden_field :section %>
-      <% f.object.tags.each do |name, options| %>
-        <%= field_for_tag(f, name, options) %>
+      <% f.object.tags.each do |tag| %>
+        <%= field_for_tag(f, tag) %>
       <% end %>
    </div>
  <% end %>

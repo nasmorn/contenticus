@@ -1,15 +1,19 @@
 module Contenticus::CmsAdminHelper
 
-  def field_for_tag(form, name, options)
-    case options[:type]
-    when "cms_field"
-      form.text_field "field_#{name}"
-    when "cms_section"
-      render "contenticus/admin/pages/section_fields", form: form, name: name
-    when "cms_rich_text"
-      form.text_area "field_#{name}", class: "rich-text-editor"
-    when "cms_image"      
-      render "contenticus/admin/images/image_fields", form: form, name: name
+  def field_for_tag(form, tag)
+    case tag.type
+    when "text_field"
+      render "contenticus/admin/tags/text_field", form: form, tag: tag
+    when "section"
+      render "contenticus/admin/tags/section_fields", form: form, tag: tag
+    when "image_field"
+      render "contenticus/admin/tags/image_field", form: form, tag: tag
+    when "select"
+      render "contenticus/admin/tags/select", form: form, tag: tag
+    when "url"
+      render "contenticus/admin/tags/url", form: form, tag: tag
+    else
+      raise tag.type
     end
   end
 

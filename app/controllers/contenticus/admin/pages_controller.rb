@@ -7,25 +7,32 @@ class Contenticus::Admin::PagesController < ApplicationController
 
   def new
     build_page
+    @slug = ::Contenticus::Slug.new
     @page.slug.parent_id = params[:parent_id] if params[:parent_id]
   end
 
   def create
-    @page = Contenticus::Page.create(page_params)
+    @page = ::Contenticus::Admin::CreatePage.call(slug_params: create_slug_params, block_params: create_block_params)
     redirect_to contenticus_admin_pages_path
   end
 
   def edit
-    @page = Contenticus::Page.find params[:id]
+    @page = Contenticus::Page.find(params[:id])
+    @tags = @page.master_block.tags
   end
 
   def update
-    @page = Contenticus::Page.find(params[:id])
-    if @page.update_attributes(page_params) && params[:close_after_save] == "close"
+    @page, @tags = ::Contenticus::Admin::UpdatePage.call(page_id: params[:id], tag_params: page_params)
+    if @page.errors.empty? && params[:close_after_save] == "close"
       redirect_to contenticus_admin_pages_path
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    ::Contenticus::Admin::DestroyPage.call(page_id: params[:id])
+    redirect_to contenticus_admin_pages_path
   end
 
   def reorder
@@ -33,12 +40,20 @@ class Contenticus::Admin::PagesController < ApplicationController
       ::Contenticus::Slug.where(:id => id).update_all(:position => index)
     end
     render :nothing => true
-  end  
+  end
 
   private
 
+  def create_slug_params
+    page_params.fetch(:slug).permit(:slug, :label, :parent_id)
+  end
+
+  def create_block_params
+    page_params.fetch(:block).permit(:layout, :locale)
+  end
+
   def page_params
-    params[:contenticus_page].permit!
+    params.fetch(:contenticus_page)
   end
 
   def build_page

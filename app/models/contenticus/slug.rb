@@ -16,8 +16,8 @@ class Contenticus::Slug < ActiveRecord::Base
 
   validates :slug,
     presence: true,
-    uniqueness: { :scope => :parent },
-    unless: lambda { |p| self.root? }  
+    uniqueness: { :scope => :ancestry },
+    unless: lambda { |p| self.root? }
 
 
   def assign_full_path

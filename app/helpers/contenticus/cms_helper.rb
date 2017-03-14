@@ -23,7 +23,7 @@ module Contenticus::CmsHelper
     image_id = image["image_id"]
     if Contenticus::Image.exists?(image["image_id"])
       file = Contenticus::Image.find(image["image_id"])
-      image_tag file.file.thumb(crop_command(image)).url
+      image_tag file.file.thumb(crop_command(image)).url, alt: crop_command(image)
     end
   end
 

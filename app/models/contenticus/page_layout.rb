@@ -1,7 +1,7 @@
 class Contenticus::PageLayout < Contenticus::Layout
 
-  def initialize(identifier)
-    super identifier, "pages"
+  def initialize(identifier, block)
+    super identifier, block, "pages"
   end
 
   def self.available

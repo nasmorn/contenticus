@@ -8,12 +8,8 @@ window.CMS.init = ->
   CMS.sortable_list()
   CMS.sortable_sections()
   CMS.wysiwyg()
-  $('.jcrop').Jcrop({
-    aspectRatio: 4/3,
-    onSelect: window.updateJcrop,
-    boxWidth: 800,
-    boxHeight: 600
-    })
+  $('.jcrop').each ->
+    window.initJcrop($(this))
 
 window.CMS.sortable_list = ->
   $('ul.sortable').sortable
@@ -51,8 +47,30 @@ window.CMS.wysiwyg = ->
     lang:             "en"
     convertDivs:      false
 
-window.updateJcrop = (c) ->
-  image_form = this.ui.holder.parent()
+window.initJcrop = (original_image) ->
+  x = parseFloat(original_image.parent().find(".crop_x").val())
+  y = parseFloat(original_image.parent().find(".crop_y").val())
+  h = parseFloat(original_image.parent().find(".crop_h").val())
+  w = parseFloat(original_image.parent().find(".crop_w").val())
+
+  selection = [x,y,w+x,h+y]
+  aspect = parseFloat(original_image.parent().find(".aspect").val())
+  minSize = [parseInt(original_image.parent().find(".min_size_w").val()),
+             parseInt(original_image.parent().find(".min_size_h").val())]
+
+  original_image.Jcrop({
+    aspectRatio: aspect,
+    onSelect: (c) ->
+      window.updateJcrop(original_image, c)
+    boxWidth: 800,
+    boxHeight: 600,
+    setSelect: selection,
+    minSize: minSize,
+    })
+
+
+window.updateJcrop = (target, c) =>
+  image_form = target.parent()
   image_form.children(".crop_x").val(c.x)
   image_form.children(".crop_y").val(c.y)
   image_form.children(".crop_h").val(c.h)
