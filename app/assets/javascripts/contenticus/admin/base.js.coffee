@@ -1,8 +1,10 @@
 window.CMS ||= {}
+window.Jcrop ||= {}
 
 $(document).on 'page:restore page:load ready', ->
   window.CMS.current_path = window.location.pathname
   window.CMS.init()
+  window.Jcrop.init()
 
 window.CMS.init = ->
   CMS.sortable_list()
