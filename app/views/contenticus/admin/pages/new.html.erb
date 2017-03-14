@@ -17,8 +17,7 @@
   <% end %>
 
   <%= f.fields_for :block, @page.master_block do |f| %>
-    <%= f.select :locale, Contenticus::Block::LOCALES %>
-    <%= f.select :layout, Contenticus::PageLayout.available %>
+    <%= f.select :layout, @layouts %>
   <% end %>
 
 <% end %>

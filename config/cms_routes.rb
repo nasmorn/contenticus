@@ -6,6 +6,7 @@ Contenticus::Application.routes.draw do
         put :reorder,         :on => :collection
       end
       resources :blocks
+      resources :snippets
       resources :images
     end
 

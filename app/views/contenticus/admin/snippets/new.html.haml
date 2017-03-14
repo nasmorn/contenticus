@@ -1,0 +1,11 @@
+%h1 New Snippet
+
+= bootstrap_form_for @snippet, url: contenticus_admin_snippets_path, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f|
+
+  = render 'layouts/contenticus/admin/formbar', f: f
+
+  = f.text_field :label
+  = f.text_field :key
+
+  = f.fields_for :block, @snippet.block do |f|
+    = f.select :layout, @layouts

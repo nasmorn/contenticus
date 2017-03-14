@@ -24,10 +24,6 @@ class Base
     ("Contenticus::Tags::" + class_name.classify).constantize.new(fields[options.fetch(:key)], options.symbolize_keys)
   end
 
-  def self.validators_on(arg)
-    []
-  end
-
   def value
     if @values.kind_of?(Hash)
       if @values.has_key?(:value) && @values.keys.count == 1
@@ -50,6 +46,16 @@ class Base
     {
       key => @values
     }
+  end
+
+  # Called by bootstrap form
+
+  def self.validators_on(arg)
+    []
+  end
+
+  def self.model_name
+    'Base'
   end
 
 end

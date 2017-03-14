@@ -8,6 +8,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   def new
     build_page
     @slug = ::Contenticus::Slug.new
+    @layouts = ::Contenticus::Layout.available_for('pages')
     @page.slug.parent_id = params[:parent_id] if params[:parent_id]
   end
 
@@ -58,7 +59,7 @@ class Contenticus::Admin::PagesController < ApplicationController
 
   def build_page
     @page = Contenticus::Page.new
-    @page.master_block = Contenticus::Block.from_layout(Contenticus::PageLayout.available.first, true)
+    @page.build_master_block
     @page.build_slug
   end
 

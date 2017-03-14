@@ -1,6 +1,6 @@
 text_field: title
 
-section: top-banner
+section: blocks/top-banner
 
 image_field:
   key: bild

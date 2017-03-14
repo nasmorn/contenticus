@@ -1,8 +1,6 @@
 class Contenticus::Block < ActiveRecord::Base
   self.table_name = "contenticus_blocks"
 
-  LOCALES = ["de", "en"]
-
   serialize :fields, JsonSerializer
 
   # Relationships
@@ -38,15 +36,7 @@ class Contenticus::Block < ActiveRecord::Base
   end
 
   def get_layout
-    Contenticus::Block.get_layout(layout, self.fields, section == "master")
-  end
-
-  def self.get_layout(layout, fields, master)
-    if master
-      Contenticus::PageLayout.new(layout, fields)
-    else
-      Contenticus::BlockLayout.new(layout, fields)
-    end
+    Contenticus::Layout.new(layout, self.fields)
   end
 
   def self.from_layout(layout, master = false)

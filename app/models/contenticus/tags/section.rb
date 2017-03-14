@@ -16,7 +16,7 @@ class Section < Base
   end
 
   def layout
-    Contenticus::BlockLayout.new(layout_name, @values)
+    Contenticus::Layout.new(layout_name, @values)
   end
 
   def update_attributes(params)

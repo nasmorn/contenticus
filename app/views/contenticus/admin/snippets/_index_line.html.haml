@@ -1,0 +1,9 @@
+%li.item
+  .btn-group
+    = link_to 'Edit', edit_contenticus_admin_snippet_path(snippet), class: "btn btn-default"
+
+  .item-content
+    .item-title
+      = snippet.label
+    .item-meta
+      = snippet.key

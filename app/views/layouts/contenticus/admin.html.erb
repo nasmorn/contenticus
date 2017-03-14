@@ -18,15 +18,18 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">Contenticus</a>
-    </div>    
+    </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
           <%= link_to "Pages", contenticus_admin_pages_path %>
         </li>
         <li>
+          <%= link_to "Snippets", contenticus_admin_snippets_path %>
+        </li>
+        <li>
           <%= link_to "Images", contenticus_admin_images_path %>
-        </li>        
+        </li>
       </ul>
     </div>
     <%= yield :formbar %>

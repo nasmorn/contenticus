@@ -1,0 +1,9 @@
+%h1
+  = link_to("New Snippet", new_contenticus_admin_snippet_path, class: "btn btn-large btn-default pull-right")
+  Snippets
+
+%hr
+
+%ul.list.sortable
+  - @snippets.each do |snippet|
+    = render 'index_line', snippet: snippet
