@@ -2,6 +2,13 @@ class Contenticus::Admin::ImagesController < ApplicationController
   layout "contenticus/admin"
 
   def index
+    @filter = params[:filter]
+    @filter ||= 'general'
+    @images = if @filter == 'general'
+      Contenticus::Image.where(block_id: nil)
+    elsif @filter =~ /\A\d+/
+      Contenticus::Image.where(block_id: @filter)
+    end
     @images = Contenticus::Image.all
   end
 
@@ -11,7 +18,17 @@ class Contenticus::Admin::ImagesController < ApplicationController
 
   def create
     @image = Contenticus::Image.create(image_params)
-    redirect_to contenticus_admin_images_path    
+    redirect_to contenticus_admin_images_path
+  end
+
+  def edit
+    @image = Contenticus::Image.find(params[:id])
+  end
+
+  def update
+    @image = Contenticus::Image.find(params[:id])
+    @image.update_attributes(image_params)
+    redirect_to contenticus_admin_images_path
   end
 
   private

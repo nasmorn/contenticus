@@ -5,7 +5,9 @@ Contenticus::Application.routes.draw do
       resources :pages do
         put :reorder,         :on => :collection
       end
-      resources :blocks
+      resources :blocks do
+        put :toggle, :on => :member
+      end
       resources :snippets
       resources :images
     end

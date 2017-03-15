@@ -35,7 +35,6 @@ ul.list {
 
   .item {
     position: relative;
-    overflow: hidden;
     padding: 5px;
     border-radius: 3px;
     margin-bottom: 5px;
@@ -44,11 +43,7 @@ ul.list {
     &:hover {
       background-color: #f5f5f5;
     }
-
-    .btn-group {
-      float: right;
-    }
-  }
+ }
 
   .icon {
     font-size: 36px;
@@ -85,4 +80,24 @@ div.block {
 
 div.section {
   border-left: 5px solid $brand-info;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

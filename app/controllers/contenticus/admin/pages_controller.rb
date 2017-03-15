@@ -19,11 +19,13 @@ class Contenticus::Admin::PagesController < ApplicationController
 
   def edit
     @page = Contenticus::Page.find(params[:id])
+    @block = @page.master_block
     @tags = @page.master_block.tags
   end
 
   def update
     @page, @tags = ::Contenticus::Admin::UpdatePage.call(id: params[:id], tag_params: page_params)
+    @block = @page.master_block
     if @page.errors.empty? && params[:close_after_save] == "close"
       redirect_to contenticus_admin_pages_path
     else

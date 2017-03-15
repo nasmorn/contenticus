@@ -18,12 +18,12 @@ class Contenticus::Block < ActiveRecord::Base
     tags.find {|tag| tag.key == key.to_s}
   end
 
-  def section_layouts
-    ['top-banner']
-  end
-
   def get_layout
     Contenticus::Layout.new(layout, fields)
+  end
+
+  def published?
+    is_published
   end
 
 end

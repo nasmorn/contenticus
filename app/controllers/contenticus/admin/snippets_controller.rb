@@ -6,7 +6,7 @@ class Contenticus::Admin::SnippetsController < Contenticus::Admin::BaseControlle
   end
 
   def new
-    @layouts = Contenticus::Layout.available_for('snippets')
+    @layouts = Contenticus::Layout.available_for('snippets') + Contenticus::Layout.available_for('blocks')
     build_snippet
   end
 

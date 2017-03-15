@@ -1,0 +1,7 @@
+%h1 Edit File
+
+= bootstrap_form_for @image, url: contenticus_admin_image_path(@image), method: "put", layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f|
+
+  = render 'layouts/contenticus/admin/formbar', f: f
+
+  = f.select :block_id, image_block_options, include_blank: true

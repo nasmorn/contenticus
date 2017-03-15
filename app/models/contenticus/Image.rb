@@ -3,6 +3,7 @@ class Contenticus::Image < ActiveRecord::Base
 
   belongs_to :block
 
+  validates_presence_of :file_name
   dragonfly_accessor :file
 
 end

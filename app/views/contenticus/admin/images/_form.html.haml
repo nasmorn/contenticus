@@ -1,0 +1,12 @@
+= f.select :block_id, image_block_options, include_blank: true
+
+.row
+  .col-sm-2
+  .col-sm-10
+    = label_tag "file", class: 'btn btn-default btn-lg btn-file' do
+      %span.glyphicon.glyphicon-cloud-upload
+      Bild Hochladen
+      = f.file_field_without_bootstrap :file
+%br
+
+= f.text_field :file_name

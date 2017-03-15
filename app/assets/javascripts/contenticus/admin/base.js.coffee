@@ -4,13 +4,14 @@ window.Jcrop ||= {}
 $(document).on 'turbolinks:load', ->
   window.CMS.current_path = window.location.pathname
   window.CMS.init()
+  $('[data-toggle="tooltip"]').tooltip()
 
 window.CMS.init = ->
   CMS.sortable_list()
   CMS.sortable_sections()
   CMS.wysiwyg()
   $('.jcrop').each ->
-    window.initJcrop($(this))
+    CMS.initJcrop($(this))
 
 window.CMS.sortable_list = ->
   $('.sortable').sortable
@@ -48,7 +49,7 @@ window.CMS.wysiwyg = ->
     lang:             "en"
     convertDivs:      false
 
-window.initJcrop = (original_image) ->
+window.CMS.initJcrop = (original_image) ->
   x = parseFloat(original_image.parent().find(".crop_x").val())
   y = parseFloat(original_image.parent().find(".crop_y").val())
   h = parseFloat(original_image.parent().find(".crop_h").val())
