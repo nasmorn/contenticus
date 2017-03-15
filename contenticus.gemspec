@@ -30,4 +30,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'coffee-rails',          '>= 3.1.0'
   s.add_dependency 'codemirror-rails',      '>= 3.0.0'
   s.add_dependency 'bootstrap-sass',        '>= 3.3.0'
+  s.add_dependency 'kramdown',              '>= 1.13.2'
 end

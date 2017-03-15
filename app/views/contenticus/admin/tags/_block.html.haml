@@ -1,0 +1,13 @@
+.block.panel.panel-default.fields
+  .panel-heading
+    .pull-right
+      %span.dragger.icon
+        %span.glyphicon.glyphicon-move
+      &nbsp;&nbsp;&nbsp;
+    %h3.panel-title
+      = tag.name
+  .panel-body
+    .fields-wrapper.sortable
+      = form.fields_for tag.key, tag do |tag_form|
+        - tag.tags.each do |nested_tag|
+          = field_for_tag tag_form, nested_tag

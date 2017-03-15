@@ -1,3 +1,5 @@
-<h1> Text: <%= cms_field(:title, page) %> </h1>
+<h1> Text: <%= cms(:title) %> </h1>
 
-<%= cms_section('top-banner', page) %>
+<%= cms_section('top-banner', @block) %>
+
+<%= cms(:bild) %>

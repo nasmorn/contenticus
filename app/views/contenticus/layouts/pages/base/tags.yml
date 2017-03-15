@@ -1,6 +1,11 @@
 text_field: title
 
-section: blocks/top-banner
+collection:
+  key: top-banner
+  min: 2
+  tag:
+    block:
+      layout: blocks/top-banner
 
 image_field:
   key: bild

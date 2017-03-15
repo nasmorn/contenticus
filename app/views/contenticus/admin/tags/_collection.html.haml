@@ -1,0 +1,7 @@
+.section.panel.panel-default
+  .panel-heading
+    .h3.panel-title= tag.name
+  .panel-body.sortable
+    = form.fields_for tag.key, tag do |tag_form|
+      - tag.tags.each do |nested_tag|
+        = field_for_tag tag_form, nested_tag

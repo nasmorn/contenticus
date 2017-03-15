@@ -16,9 +16,10 @@ module Contenticus::RenderMethods
     end
 
     def render_cms_page(page, options = {}, locals = {}, &block)
-      render partial: "contenticus/layouts/pages/#{page.master_block.layout}/main", locals: {page: page.master_block}
+      @block = page.master_block
+      render partial: "contenticus/layouts/#{page.master_block.layout}/main"
     end
- 
+
   end
 end
 

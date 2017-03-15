@@ -1,14 +1,13 @@
 module Contenticus
 module Tags
-class Section < Base
+class Block < Base
 
   attr_reader :min, :max
 
-  def initialize(values, key:, name: nil, comment: nil, min: nil, max: nil)
+  def initialize(values, key:, layout:, name: nil, comment: nil)
     super values, key: key, name: name, comment: comment
-    @min = min
-    @max = max
     @values ||= {}
+    @layout_name = layout
   end
 
   def tags
@@ -16,7 +15,7 @@ class Section < Base
   end
 
   def layout
-    Contenticus::Layout.new(layout_name, @values)
+    Contenticus::Layout.new(@layout_name, @values)
   end
 
   def update_attributes(params)
@@ -30,12 +29,6 @@ class Section < Base
     {
       key => tags.map(&:serialize).inject(:merge)
     }
-  end
-
-  private
-
-  def layout_name
-    @key
   end
 
 end

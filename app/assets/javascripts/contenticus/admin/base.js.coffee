@@ -13,7 +13,7 @@ window.CMS.init = ->
     window.initJcrop($(this))
 
 window.CMS.sortable_list = ->
-  $('ul.sortable').sortable
+  $('.sortable').sortable
     handle: '.icon'
     axis:   'y'
     update: ->

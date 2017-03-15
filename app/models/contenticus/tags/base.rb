@@ -48,6 +48,10 @@ class Base
     }
   end
 
+  def frontend_partial
+    "/contenticus/tags/#{type}"
+  end
+
   # Called by bootstrap form
 
   def self.validators_on(arg)

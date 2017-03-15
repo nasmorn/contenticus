@@ -10,6 +10,7 @@ PATH
       haml-rails (>= 0.3.0)
       jquery-rails (>= 3.0.0)
       jquery-ui-rails (>= 5.0.0)
+      kramdown (>= 1.13.2)
       pg
       rails (>= 4.0.0, < 5)
       rails-i18n (>= 4.0.0)
@@ -113,6 +114,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    kramdown (1.13.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -220,6 +222,7 @@ DEPENDENCIES
   dragonfly (~> 1.0.10)
   factory_girl_rails (~> 4.5.0)
   jcrop-rails-v2
+  kramdown
   powder
   rake (~> 10.4)
   rspec-rails (~> 3.3.2)

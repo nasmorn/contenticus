@@ -51,6 +51,16 @@ class ImageField < Base
     @values = params.permit(:image_id, :crop_x, :crop_y, :crop_h, :crop_w)
   end
 
+  def render
+    if image_exists?
+      image_tag image.file.thumb(crop_command(image)).url, alt: crop_command(image)
+    end
+  end
+
+  def crop_command
+    "%ix%i+%i+%i" % [crop_w, crop_h, crop_x, crop_y].map(&:to_i)
+  end
+
 end
 end
 end

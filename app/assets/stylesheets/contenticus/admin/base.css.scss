@@ -39,7 +39,7 @@ ul.list {
     padding: 5px;
     border-radius: 3px;
     margin-bottom: 5px;
-    border: 1px solid #ddd;    
+    border: 1px solid #ddd;
 
     &:hover {
       background-color: #f5f5f5;
@@ -50,7 +50,7 @@ ul.list {
     }
   }
 
-  .icon {  
+  .icon {
     font-size: 36px;
     left: 20px;
     top: 3px;
@@ -65,7 +65,7 @@ ul.list {
       }
       .glyphicon-file {
         display: none;
-      }      
+      }
     }
   }
 }
@@ -77,4 +77,12 @@ section .fields {
     font-size: 30px;
     top: 2px;
   }
+}
+
+div.block {
+  border-left: 5px solid $brand-primary;
+}
+
+div.section {
+  border-left: 5px solid $brand-info;
 }
