@@ -1,5 +1,6 @@
 .panel.panel-default
   .panel-body
+    = render '/contenticus/admin/blocks/collectible_bar'
     = form.fields_for tag.key, tag do |tag_form|
       .row
         .col-sm-6

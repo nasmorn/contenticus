@@ -1,0 +1,28 @@
+div.block {
+  border-left: 5px solid $brand-primary;
+}
+
+div.section {
+  border-left: 5px solid $brand-info;
+
+  .panel-heading {
+    height: 55px;
+  }
+}
+
+.panel {
+  position: relative;
+}
+
+.fields-wrapper .panel-body .icon{
+  right: 10px;
+}
+
+section .fields {
+  position: relative;
+  .icon {
+    left: 20px;
+    font-size: 30px;
+    top: 2px;
+  }
+}

@@ -32,6 +32,7 @@ class Collection < Base
 
   def update_attributes(params)
     @values = params.permit!
+    @values.delete('additional')
     tags.each do |tag|
       tag.update_attributes(@values.fetch(tag.key))
     end
@@ -41,6 +42,10 @@ class Collection < Base
     {
       key => tags.map(&:serialize).inject(&:merge)
     }
+  end
+
+  def add_tag
+    instantiate({}, 'additional')
   end
 
 end

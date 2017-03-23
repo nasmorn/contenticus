@@ -24,9 +24,6 @@ window.CMS.sortable_sections = ->
   $('.fields-wrapper.sortable').sortable
     handle: 'span.dragger'
     axis:   'y'
-    update: (event, ui)->
-      i = 0
-      $(item).children(".position").val(i++) for item in $(this).children(".panel")
 
 window.CMS.wysiwyg = ->
   csrf_token = $('meta[name=csrf-token]').attr('content')

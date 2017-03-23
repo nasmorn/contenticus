@@ -1,7 +1,14 @@
 .section.panel.panel-default
-  .panel-heading
-    .h3.panel-title= tag.name
-  .panel-body.sortable
-    = form.fields_for tag.key, tag do |tag_form|
+  = form.fields_for tag.key, tag do |tag_form|
+    .panel-heading
+      .btn-toolbar.pull-right
+        .btn-group
+          - fields = field_for_tag tag_form, tag.add_tag
+          = content_tag(:button, class: "btn btn-primary", onclick: "return add_fields(this, \"tags\", \"#{escape_javascript(fields)}\")") do
+            %span.glyphicon.glyphicon-plus
+      .h3.panel-title
+        = tag.name
+
+    .panel-body.sortable.fields-wrapper
       - tag.tags.each do |nested_tag|
         = field_for_tag tag_form, nested_tag
