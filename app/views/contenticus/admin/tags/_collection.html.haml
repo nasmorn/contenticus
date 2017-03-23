@@ -3,7 +3,7 @@
     .panel-heading
       .btn-toolbar.pull-right
         .btn-group
-          - fields = field_for_tag tag_form, tag.add_tag
+          - fields = content_tag(:div, field_for_tag(tag_form, tag.add_tag), class: 'collectible')
           = content_tag(:button, class: "btn btn-primary", onclick: "return add_fields(this, \"tags\", \"#{escape_javascript(fields)}\")") do
             %span.glyphicon.glyphicon-plus
       .h3.panel-title
@@ -11,4 +11,5 @@
 
     .panel-body.sortable.fields-wrapper
       - tag.tags.each do |nested_tag|
-        = field_for_tag tag_form, nested_tag
+        .collectible
+          = field_for_tag tag_form, nested_tag

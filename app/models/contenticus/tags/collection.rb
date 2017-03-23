@@ -9,8 +9,12 @@ class Collection < Base
     @min = min
     @max = max
     @values ||= {}
-    @type = tag.keys.first
-    @options = tag[@type]
+    @options = tag.with_indifferent_access
+    @type = @options.fetch(:type)
+  end
+
+  def tag(key)
+    tags.find {|tag| tag.key == key.to_s}
   end
 
   def tags

@@ -1,5 +1,5 @@
-.banner-item
+.banner
   = link_to "href" do
-    = cms_image :bild, block
+    = cms :bild, different_block: tag
   .banner-caption
-    = cms_field :titel, block
+    = cms :titel, different_block: tag

@@ -10,6 +10,7 @@ Contenticus::Application.routes.draw do
       end
       resources :snippets
       resources :images
+      get '/' => redirect('/admin/pages')
     end
 
     get '/:format' => 'pages#show', :as => 'render_page', :path => "(*cms_path)"

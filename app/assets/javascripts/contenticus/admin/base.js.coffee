@@ -12,6 +12,8 @@ window.CMS.init = ->
   CMS.wysiwyg()
   $('.jcrop').each ->
     CMS.initJcrop($(this))
+  $(document).on 'click', '.remove-collectible', ->
+    $(this).parents('.collectible').remove()
 
 window.CMS.sortable_list = ->
   $('.sortable').sortable

@@ -1,0 +1,19 @@
+title: text_field
+
+top-banner:
+  type: collection
+  min: 2
+  tag:
+    block:
+      layout: blocks/top-banner
+
+images:
+  type: collection
+  min: 1
+  tag:
+    bild:
+      type: image_field
+      name: Schönes Bild
+      comment: Wirklich schönes Bild aussuchen bitte
+      aspect_ratio: '14:3'
+      min_size: '700x150'

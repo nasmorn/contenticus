@@ -2,11 +2,9 @@ module Contenticus::CmsHelper
 
   def cms(key, different_block: nil)
     block = different_block || @block
-    render block.tag(key).frontend_partial, tag: block.tag(key)
-  end
-
-  def cms_block(block, view = "main")
-    render partial: "contenticus/layouts/blocks/#{block.layout}/#{view}", locals: {block: block}
+    tag = block.tag(key)
+    raise "Tag with key '#{key}' not found in block #{block.id} with layout '#{block.layout}'" unless tag
+    render tag.frontend_partial, tag: tag
   end
 
   def cms_section(identifier, object, view = "main")

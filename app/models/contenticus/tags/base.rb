@@ -15,13 +15,17 @@ class Base
     self.class.name.underscore.split('/').last
   end
 
-  def self.instantiate(fields, class_name, options)
-    options = if options.kind_of?(String)
-      {key: options}
+  def self.instantiate(fields, key, options_from_layout)
+    options = {key: key}
+    options = if options_from_layout.kind_of?(String)
+     {type: options_from_layout}.merge(options)
     else
-      options
+      options.merge(options_from_layout)
     end.with_indifferent_access
-    ("Contenticus::Tags::" + class_name.classify).constantize.new(fields[options.fetch(:key)], options.symbolize_keys)
+
+    ("Contenticus::Tags::" + options.delete(:type).classify).constantize.new(fields[options.fetch(:key)], options.symbolize_keys)
+  rescue
+    raise "Key: #{key} - options: #{options_from_layout}"
   end
 
   def value

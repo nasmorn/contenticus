@@ -10,12 +10,16 @@ class Block < Base
     @layout_name = layout
   end
 
+  def tag(key)
+    tags.find {|tag| tag.key == key.to_s}
+  end
+
   def tags
     layout.tags
   end
 
   def layout
-    Contenticus::Layout.new(@layout_name, @values)
+    @layout ||= Contenticus::Layout.new(@layout_name, @values)
   end
 
   def update_attributes(params)
@@ -29,6 +33,10 @@ class Block < Base
     {
       key => tags.map(&:serialize).inject(:merge)
     }
+  end
+
+  def frontend_partial
+    layout.frontend_path
   end
 
 end

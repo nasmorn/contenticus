@@ -2,6 +2,3 @@
 unless defined? Contenticus::Application
   require_relative 'contenticus/engine'
 end
-
-require_relative 'contenticus/render_methods'
-
