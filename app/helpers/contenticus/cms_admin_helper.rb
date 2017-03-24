@@ -6,9 +6,9 @@ module Contenticus::CmsAdminHelper
 
   def image_block_options
     Contenticus::Block.all.map do |block|
-      name = case block.sectionable_type
-      when 'Contenticus::Page' then block.sectionable.slug.label
-      when 'Contenticus::Snippet' then block.sectionable.label
+      name = case block.blockable_type
+      when 'Contenticus::Page' then block.blockable.slug.label
+      when 'Contenticus::Snippet' then block.blockable.label
       end
       [name, block.id]
     end

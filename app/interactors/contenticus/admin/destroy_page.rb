@@ -9,7 +9,7 @@ class DestroyPage < ::Contenticus::Interactor
   def call
     # Destroy blocks
     ::Contenticus::Page.transaction do
-      @page.master_block.destroy
+      @page.block.destroy
       @page.destroy
     end
   end

@@ -4,11 +4,15 @@ class Contenticus::Block < ActiveRecord::Base
   serialize :fields, JsonSerializer
 
   # Relationships
-  belongs_to :sectionable, polymorphic: true
-  has_many :blocks, as: :sectionable, dependent: :destroy
+  belongs_to :blockable, polymorphic: true
 
   # Validations
-  validates_presence_of :layout, :section
+  validates_presence_of :layout
+
+  # Scopes
+  scope :master, -> {where(section: nil)}
+
+  # Instance Methods
 
   def tags
     @tags ||= get_layout.tags

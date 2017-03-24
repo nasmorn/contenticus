@@ -2,7 +2,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   layout "contenticus/admin"
 
   def index
-    @pages = Contenticus::Slug.where(sluggable_type: "Contenticus::Page").includes(sluggable: :master_block).arrange(order: "position")
+    @pages = Contenticus::Slug.where(sluggable_type: "Contenticus::Page").includes(sluggable: :block).arrange(order: "position")
   end
 
   def new
@@ -19,13 +19,13 @@ class Contenticus::Admin::PagesController < ApplicationController
 
   def edit
     @page = Contenticus::Page.find(params[:id])
-    @block = @page.master_block
-    @tags = @page.master_block.tags
+    @block = @page.block
+    @tags = @block.tags
   end
 
   def update
     @page, @tags = ::Contenticus::Admin::UpdatePage.call(id: params[:id], tag_params: page_params)
-    @block = @page.master_block
+    @block = @page.block
     if @page.errors.empty? && params[:close_after_save] == "close"
       redirect_to contenticus_admin_pages_path
     else
@@ -61,7 +61,7 @@ class Contenticus::Admin::PagesController < ApplicationController
 
   def build_page
     @page = Contenticus::Page.new
-    @page.build_master_block
+    @page.build_block
     @page.build_slug
   end
 

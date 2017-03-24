@@ -2,7 +2,7 @@ class Contenticus::Page < ActiveRecord::Base
   self.table_name = "contenticus_pages"
 
   # Relationships
-  has_one :master_block, -> { where(section: "master") }, as: :sectionable, class_name: Contenticus::Block
+  has_one :block, -> { master }, as: :blockable, class_name: Contenticus::Block
   has_one :slug, as: :sluggable, class_name: ::Contenticus::Slug
 
   # Validations

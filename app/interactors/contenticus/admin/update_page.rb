@@ -8,7 +8,7 @@ class UpdatePage < ::Contenticus::Interactor
   end
 
   def call
-    tags = UpdateBlock.call(block_id: @page.master_block.id, params: @params)
+    tags = UpdateBlock.call(block_id: @page.block.id, params: @params)
     return @page, tags
   end
 

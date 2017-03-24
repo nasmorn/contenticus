@@ -10,7 +10,7 @@ class CreatePage < ::Contenticus::Interactor
   def call
     page = ::Contenticus::Page.new
     page.build_slug(@slug_params)
-    page.build_master_block(@block_params)
+    page.build_block(@block_params)
     page.save
     page
   end

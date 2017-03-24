@@ -27,15 +27,14 @@ class CreateCms < ActiveRecord::Migration
 
     # -- Blocks -----------------------------------------------------------
     create_table :contenticus_blocks do |t|
-      t.references :sectionable,  polymorphic: true, null: false
+      t.references :blockable,  polymorphic: true, null: false
       t.string  :layout
       t.string  :section
       t.jsonb   :fields,          null: false, default: '{}'
       t.boolean :is_published,    null: false, default: true
       t.timestamps
     end
-    add_index :contenticus_blocks, :sectionable_id
-    add_index :contenticus_blocks, [:sectionable_id, :sectionable_type]
+    add_index :contenticus_blocks, [:blockable_id, :blockable_type, :section], unique: true, name: 'contenticus_blocks_find'
 
     # -- Snippets -----------------------------------------------------------
     create_table :contenticus_snippets do |t|
