@@ -5,6 +5,14 @@
 //= require turbolinks
 //= require jquery.Jcrop
 
+//= require codemirror
+//= require codemirror/modes/css
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/javascript
+//= require codemirror/modes/markdown
+//= require codemirror/modes/xml
+//= require codemirror/addons/edit/closetag
+
 //= require contenticus/admin/vendor/redactor
 //= require contenticus/admin/base
 //= require contenticus/admin/formbar

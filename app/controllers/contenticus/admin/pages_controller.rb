@@ -8,7 +8,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   def new
     build_page
     @slug = ::Contenticus::Slug.new
-    @layouts = ::Contenticus::Layout.available_for('pages')
+    @layouts = ['redirect'] + ::Contenticus::Layout.available_for('pages')
     @page.slug.parent_id = params[:parent_id] if params[:parent_id]
   end
 

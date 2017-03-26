@@ -1,5 +1,7 @@
 class Contenticus::Admin::BaseController < ApplicationController
 
+  layout 'contenticus/admin'
+
   private
 
   def save_and_close?

@@ -7,6 +7,18 @@ class Contenticus::Page < ActiveRecord::Base
 
   # Validations
 
+  def redirect?
+    block.layout == 'redirect'
+  end
+
+  def redirect_target
+    if slug.children.any?
+      slug.children.first.full_path
+    else
+      "#"
+    end
+  end
+
   def self.options_for_select(current_page)
     options = []
     ::Contenticus::Slug.includes(:sluggable).arrange.each do |k,v|

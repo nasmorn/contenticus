@@ -4,8 +4,9 @@ class CreateImages < ActiveRecord::Migration
       t.references :block
       t.string :file_uid
       t.string :file_name
-      t.integer :width
-      t.integer :height
+      t.integer :file_width
+      t.integer :file_height
+      t.integer :file_size
       t.timestamps
     end
   end

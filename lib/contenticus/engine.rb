@@ -15,7 +15,6 @@ require 'coffee-rails'
 require 'codemirror-rails'
 require 'bootstrap-sass'
 
-
 module Contenticus
   class Engine < ::Rails::Engine
     # ...

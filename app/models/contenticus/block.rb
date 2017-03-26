@@ -30,4 +30,12 @@ class Contenticus::Block < ActiveRecord::Base
     is_published
   end
 
+  def frontend_layout(special = 'main')
+    "contenticus/layouts/#{layout}/_#{special}"
+  end
+
+ def frontend_partial(special = 'main')
+    "contenticus/layouts/#{layout}/#{special}"
+  end
+
 end

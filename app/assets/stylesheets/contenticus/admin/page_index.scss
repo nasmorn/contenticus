@@ -16,9 +16,28 @@
       }
    }
 
+    .branch-toggle {
+      position: absolute;
+      border: none;
+      top: 14px;
+
+      .glyphicon-triangle-bottom {
+        display: none;
+      }
+      &:hover {
+        .glyphicon-triangle-bottom  {
+          display: inline;
+        }
+        .glyphicon-triangle-right {
+          display: none;
+        }
+      }
+    }
+
     .icon {
+      position: absolute;
       font-size: 36px;
-      left: 20px;
+      left: 25px;
       top: 3px;
 
       .glyphicon-move {
@@ -46,10 +65,6 @@
         font-size: 14px;
         line-height: 14px;
       }
-    }
-
-    .icon {
-      position: absolute;
     }
   }
 }

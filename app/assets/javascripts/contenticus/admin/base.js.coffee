@@ -1,5 +1,6 @@
 window.CMS ||= {}
 window.Jcrop ||= {}
+window.CMS.code_mirror_instances = [ ]
 
 $(document).on 'turbolinks:load', ->
   window.CMS.current_path = window.location.pathname
@@ -7,6 +8,7 @@ $(document).on 'turbolinks:load', ->
   $('[data-toggle="tooltip"]').tooltip()
 
 window.CMS.init = ->
+  CMS.codemirror()
   CMS.sortable_list()
   CMS.sortable_sections()
   CMS.wysiwyg()
@@ -63,8 +65,8 @@ window.CMS.initJcrop = (original_image) ->
     aspectRatio: aspect,
     onSelect: (c) ->
       window.updateJcrop(original_image, c)
-    boxWidth: 800,
-    boxHeight: 600,
+    boxWidth: 520,
+    boxHeight: 400,
     setSelect: selection,
     minSize: minSize,
     })
@@ -76,3 +78,19 @@ window.updateJcrop = (target, c) =>
   image_form.children(".crop_y").val(c.y)
   image_form.children(".crop_h").val(c.h)
   image_form.children(".crop_w").val(c.w)
+
+window.CMS.codemirror = ->
+  $('textarea[data-cms-cm-mode]').each (i, element) ->
+    cm = CodeMirror.fromTextArea element,
+      mode:           $(element).data('cms-cm-mode')
+      lineWrapping:   true
+      autoCloseTags:  true
+      lineNumbers:    true
+    CMS.code_mirror_instances.push(cm)
+    $(cm.display.wrapper).resizable resize: ->
+      cm.setSize($(@).width(), $(@).height())
+      cm.refresh()
+
+  $('a[data-toggle="tab"]').on 'shown.bs.tab', ->
+    for cm in CMS.code_mirror_instances
+      cm.refresh()

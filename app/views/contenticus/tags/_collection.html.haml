@@ -1,2 +1,2 @@
 - tag.tags.each do |collectible|
-  = cms collectible.key, different_block: tag
+  = cms(collectible.key, block: tag, layout: collectible_layout)
