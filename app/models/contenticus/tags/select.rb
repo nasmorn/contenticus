@@ -4,14 +4,21 @@ class Select < Base
 
   attr_reader :scope
 
-  def initialize(block, key:, name: nil, comment: nil, model:)
+  def initialize(block, key:, name: nil, comment: nil, model:, label: 'contenticus_label', scope: 'all')
     super block, key: key, name: name, comment: comment
     @model = model.classify.constantize
-    @scope = @model.all
+    @scope = @model.send(scope)
+    @label = label
   end
 
   def options
-    @scope.pluck(:label, :id)
+    @scope.map do |record|
+      [record.send(@label), record.id]
+    end
+  end
+
+  def object
+    @model.find(value)
   end
 
 end

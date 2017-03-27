@@ -14,3 +14,6 @@
 
       - if tag.image_exists?
         = image_tag tag.image.file.url, class: "jcrop"
+      - if tag.comment.present?
+        %p.help-block
+          = tag.comment

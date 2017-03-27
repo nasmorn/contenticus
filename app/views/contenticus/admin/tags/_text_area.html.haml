@@ -1,2 +1,5 @@
 = form.fields_for tag.key, tag do |tag_form|
   = tag_form.text_area :value, tag.admin_options
+  - if tag.comment.present?
+    %p.help-block
+      = tag.comment

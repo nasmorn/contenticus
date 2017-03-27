@@ -41,4 +41,5 @@ section .fields {
 // For regular tags it is in the body since they have no heading
 .collectible > .panel > .panel-body > .collectible-bar {
   display: block;
+  position: absolute;
 }
