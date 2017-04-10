@@ -1,8 +1,5 @@
 class Contenticus::LayoutParser
 
-  require "parser/current"
-  require 'unparser'
-
   attr_reader :tags
 
   def initialize(path)
