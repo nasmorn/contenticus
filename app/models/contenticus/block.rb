@@ -11,6 +11,7 @@ class Contenticus::Block < ActiveRecord::Base
 
   # Scopes
   scope :master, -> {where(section: nil)}
+  scope :section, -> (section_name) {where(section: section_name)}
 
   # Instance Methods
 

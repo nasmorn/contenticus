@@ -20,12 +20,13 @@ class Contenticus::Admin::PagesController < ApplicationController
   def edit
     @page = Contenticus::Page.find(params[:id])
     @block = @page.block
-    @tags = @block.tags
+    @meta = @page.meta
   end
 
   def update
-    @page, @tags = ::Contenticus::Admin::UpdatePage.call(id: params[:id], tag_params: page_params)
-    @block = @page.block
+    @page = ::Contenticus::Admin::UpdatePage.call(id: params[:id], tag_params: page_params)
+    @meta = @page.meta.reload
+    @block = @page.block.reload
     if @page.errors.empty? && params[:close_after_save] == "close"
       redirect_to contenticus_admin_pages_path
     else
@@ -34,7 +35,8 @@ class Contenticus::Admin::PagesController < ApplicationController
   end
 
   def destroy
-    ::Contenticus::Admin::DestroyPage.call(page_id: params[:id])
+    success = ::Contenticus::Admin::DestroyPage.call(page_id: params[:id])
+    flash[:danger] = 'Cannot delete page with children.' unless success
     redirect_to contenticus_admin_pages_path
   end
 
@@ -56,7 +58,7 @@ class Contenticus::Admin::PagesController < ApplicationController
   end
 
   def page_params
-    params.fetch(:contenticus_page)
+    params.fetch(:contenticus_page).permit!
   end
 
   def build_page

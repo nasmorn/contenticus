@@ -7,10 +7,12 @@ class DestroyPage < ::Contenticus::Interactor
   end
 
   def call
-    # Destroy blocks
+    return false if @page.slug.children.any?
     ::Contenticus::Page.transaction do
       @page.block.destroy
+      @page.meta.destroy
       @page.destroy
+      @page.slug.destroy
     end
   end
 

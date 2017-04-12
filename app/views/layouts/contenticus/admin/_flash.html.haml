@@ -1,0 +1,6 @@
+- if flash.keys.any?
+  %br
+- if flash[:danger]
+  .alert.alert-danger{role: 'alert'}= flash[:danger]
+- if flash[:success]
+  .alert.alert-success{role: 'alert'}= flash[:success]

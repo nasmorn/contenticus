@@ -19,7 +19,11 @@ class Contenticus::Layout
   end
 
   def tags_path
-    'app/views/contenticus/' + path + "/tags.yml"
+    if @identifier =~ /\Asystem/
+      Contenticus::Engine.root.join('app', 'views', 'contenticus', 'layouts', @identifier, 'tags.yml')
+    else
+      'app/views/contenticus/' + path + "/tags.yml"
+    end
   end
 
   def parse(path)

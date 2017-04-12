@@ -11,6 +11,7 @@ class CreatePage < ::Contenticus::Interactor
     page = ::Contenticus::Page.new
     page.build_slug(@slug_params)
     page.build_block(@block_params)
+    page.build_meta(layout: 'system/meta')
     page.save
     page
   end

@@ -25,4 +25,8 @@ module Contenticus::CmsHelper
     render @block.frontend_partial
   end
 
+  def cms_meta
+    @meta || Contenticus::Meta.new
+  end
+
 end

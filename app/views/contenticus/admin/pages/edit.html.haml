@@ -1,8 +1,17 @@
-%h1 Edit Page
+%h1
+  Edit Page -
+  = @page.slug.label
+  %small= link_to @page.slug.full_path, @page.slug.full_path, target: '_blank'
 
 = bootstrap_form_for @page, url: contenticus_admin_page_path, method: 'put', layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f|
 
   = render 'layouts/contenticus/admin/formbar', f: f
 
-  - @tags.each do |tag|
-    = field_for_tag(f, tag)
+  = f.fields_for :block do |block_form|
+    - @block.tags.each do |tag|
+      = field_for_tag(block_form, tag)
+
+  %h2 Html Meta Tags
+  = f.fields_for :meta do |meta_form|
+    - @meta.tags.each do |tag|
+      = field_for_tag(meta_form, tag)

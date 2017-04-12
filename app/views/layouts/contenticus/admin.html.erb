@@ -39,6 +39,7 @@
 
 
 <div class="container-fluid main <%= "with-formbar" if content_for?(:formbar) %> ">
+  <%= render 'layouts/contenticus/admin/flash' %>
   <%= yield %>
 </div>
 

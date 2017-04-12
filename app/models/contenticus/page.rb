@@ -3,6 +3,7 @@ class Contenticus::Page < ActiveRecord::Base
 
   # Relationships
   has_one :block, -> { master }, as: :blockable, class_name: Contenticus::Block
+  has_one :meta, -> { section('meta') }, as: :blockable, class_name: Contenticus::Block
   has_one :slug, as: :sluggable, class_name: ::Contenticus::Slug
 
   # Validations
