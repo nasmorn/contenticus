@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contenticus (0.2)
+    contenticus (0.3)
       ancestry
       bootstrap-sass (>= 3.3.0)
       bootstrap_form (>= 2.3.0)

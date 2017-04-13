@@ -25,7 +25,7 @@ class Base
 
     ("Contenticus::Tags::" + options.delete(:type).classify).constantize.new(fields[options.fetch(:key)], options.symbolize_keys)
   rescue
-    raise "Key: #{key} - options: #{options_from_layout}"
+    raise "Key: #{key} - options: #{options_from_layout} - fields: #{fields}"
   end
 
   def value
@@ -43,7 +43,7 @@ class Base
   end
 
   def update_attributes(params)
-    @values = params.fetch(:value)
+    @values = params
   end
 
   def serialize
@@ -54,6 +54,14 @@ class Base
 
   def frontend_partial
     "/contenticus/tags/#{type}"
+  end
+
+  def published?
+    true
+  end
+
+  def toggle_published?
+    false
   end
 
   # Called by bootstrap form

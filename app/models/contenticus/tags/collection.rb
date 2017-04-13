@@ -19,7 +19,7 @@ class Collection < Base
 
   def tags
     new_tags = []
-    @values.each do |k,v|
+    collectible_values.each do |k,v|
       new_tags << instantiate({k => v}, k)
     end
     if new_tags.count < @min
@@ -35,8 +35,10 @@ class Collection < Base
   end
 
   def update_attributes(params)
-    @values = params.permit!
-    @values.delete('additional')
+    @values = params
+    @values.delete('contenticus-additional')
+    published_tag.update_attributes(@values.fetch('contenticus-published'))
+    @values.delete('contenticus-published')
     tags.each do |tag|
       tag.update_attributes(@values.fetch(tag.key))
     end
@@ -44,12 +46,24 @@ class Collection < Base
 
   def serialize
     {
-      key => tags.map(&:serialize).inject(&:merge)
+      key => published_tag.serialize.merge(tags.map(&:serialize).inject(&:merge))
     }
   end
 
   def add_tag
-    instantiate({}, 'additional')
+    instantiate({}, 'contenticus-additional')
+  end
+
+  def published_tag
+    @published_tag ||= Contenticus::Tags::Boolean.new(@values.fetch('contenticus-published', '1'), key: 'contenticus-published', hidden: true)
+  end
+
+  def published?
+    published_tag.true?
+  end
+
+  def collectible_values
+    @values.select {|k,v| k =~ /\A\d+/}
   end
 
 end

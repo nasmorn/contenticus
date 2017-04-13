@@ -2,6 +2,7 @@ module Contenticus::CmsHelper
 
   def cms(key, block: @block, collectible_layout: nil, layout: nil)
     tag = block.tag(key)
+    return unless tag.published?
     raise "Tag with key '#{key}' not found in block #{block.id} with layout '#{block.layout}'" unless tag
     if layout
       render partial: tag.frontend_partial, layout: layout, locals: {tag: tag}

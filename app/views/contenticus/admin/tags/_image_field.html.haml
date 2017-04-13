@@ -1,6 +1,6 @@
 .panel.panel-default
   .panel-body
-    = render '/contenticus/admin/blocks/collectible_bar'
+    = render '/contenticus/admin/blocks/collectible_bar', tag: tag
     = form.fields_for tag.key, tag do |tag_form|
       = tag_form.select :image_id, options_for_select(image_field_options(@block), tag.image_id), label: 'Bild'
       = tag_form.hidden_field :crop_x, class: "crop_x"

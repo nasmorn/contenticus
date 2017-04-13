@@ -17,4 +17,4 @@
 //= require contenticus/admin/base
 //= require contenticus/admin/formbar
 //= require contenticus/admin/add_fields
-//= require contenticus/admin/layout_switch
+//= require contenticus/admin/page

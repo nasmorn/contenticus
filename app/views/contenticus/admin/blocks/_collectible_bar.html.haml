@@ -1,7 +1,13 @@
-.btn-toolbar.pull-right.collectible-bar
+.btn-toolbar.pull-right
   .btn-group
+    - if tag.toggle_published?
+      - toggle_published_color = tag.published? ? 'success' : 'default'
+      = content_tag(:button, class: "btn btn-#{toggle_published_color}", onclick: "window.CMS.toggle_published(this); return false;") do
+        %span.glyphicon.glyphicon-off
+  .btn-group.collectible-bar
     .btn.btn-default
       %span.dragger.icon
         %span.glyphicon.glyphicon-move
+
     %a.btn.btn-danger.remove-collectible
       %span.glyphicon.glyphicon-remove
