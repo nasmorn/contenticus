@@ -47,7 +47,7 @@ class Block < Base
   end
 
   def published_tag
-    @published_tag ||= Contenticus::Tags::Boolean.new(@values.fetch('contenticus-published', '1'), key: 'contenticus-published', hidden: false)
+    @published_tag ||= Contenticus::Tags::Boolean.new(@values.fetch('contenticus-published', '1'), key: 'contenticus-published', hidden: true)
   end
 
   def published?
