@@ -31,7 +31,7 @@ class Collection < Base
   end
 
   def instantiate(values, new_key)
-    Contenticus::Tags::Base.instantiate(values, @type, @options.merge(key: new_key, name: @name))
+    Contenticus::Tags::Base.instantiate(values, @type, @options.merge(key: new_key, name: @name, parent: self))
   end
 
   def update_attributes(params)
@@ -64,6 +64,19 @@ class Collection < Base
 
   def collectible_values
     @values.select {|k,v| k =~ /\A\d+/}
+  end
+
+  def collection_layout
+    return unless @options.has_key?(:layout)
+    Contenticus::Layout.new(@options.fetch(:layout), {}).frontend_path('collection_wrapper')
+  end
+
+  def count
+    tags.length
+  end
+
+  def toggle_published?
+    true
   end
 
 end

@@ -1,0 +1,19 @@
+.btn[data-toggle=collapse] {
+
+  .glyphicon-triangle-right { display: none; }
+  &:hover{
+    .glyphicon-triangle-bottom { display: none; }
+    .glyphicon-triangle-right { display: inline-block; }
+  }
+}
+
+.btn.collapsed[data-toggle=collapse] {
+
+  &:hover{
+    .glyphicon-triangle-bottom { display: inline-block; }
+    .glyphicon-triangle-right { display: none; }
+  }
+
+  .glyphicon-triangle-bottom { display: none; }
+  .glyphicon-triangle-right { display: inline-block; }
+}

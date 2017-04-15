@@ -1,9 +1,9 @@
 .block.panel.panel-default.fields
   .panel-heading
-    = render '/contenticus/admin/blocks/collectible_bar', tag: tag
+    = tag_toolbar tag, collapse: {open: false}
     %h3.panel-title
       = tag.name
-  .panel-body
+  .panel-body.collapse{id: tag.dom_id}
     .row
       .col-sm-6
         .fields-wrapper.sortable

@@ -16,9 +16,7 @@
         = link_to "Edit", edit_contenticus_admin_page_path(page.sluggable), class: "btn btn-primary"
 
     - if page.children.any?
-      %a.btn.btn-default.btn-xs.branch-toggle{'data-target' => "#slug_#{page.id}", 'data-toggle' => 'collapse'}
-        %span.glyphicon.glyphicon-triangle-right
-        %span.glyphicon.glyphicon-triangle-bottom
+      = btn_collapse(branch_open, css_classes: 'btn-default btn-xs branch-toggle', target: "#slug_#{page.id}")
     .icon
       %span.glyphicon.glyphicon-file
       %span.glyphicon.glyphicon-move.dragger
@@ -26,6 +24,6 @@
       .item-title= page.label
       .item-meta= link_to page.full_path, page.full_path
   - if children.any?
-    %ul.sortable.collapse.in{id: "slug_#{page.id}"}
+    %ul.sortable.collapse{id: "slug_#{page.id}", class: (branch_open ? 'in' : '')}
       - children.each do |page,children|
-        = render partial: 'index_branch', object: page, locals: {children: children }
+        = render partial: 'index_branch', object: page, locals: {children: children, branch_open: false }

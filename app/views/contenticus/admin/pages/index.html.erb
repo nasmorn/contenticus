@@ -7,6 +7,6 @@
 
 <ul class="list sortable sluggable-list">
   <% @pages.each do |page, children| %>
-    <%= render partial: 'index_branch', object: page, locals: {children: children } %>
+    <%= render partial: 'index_branch', object: page, locals: {children: children, branch_open: true } %>
   <% end %>
 </ul>

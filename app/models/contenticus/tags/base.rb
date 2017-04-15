@@ -4,11 +4,12 @@ class Base
 
   attr_reader :key, :name, :comment
 
-  def initialize(values, key:, name: nil, comment: nil)
+  def initialize(values, key:, name: nil, comment: nil, parent: nil)
     @key = key
     @name = name ? name : @key.capitalize
     @comment = comment
     @values = values
+    @parent = parent
   end
 
   def type
@@ -72,6 +73,22 @@ class Base
 
   def self.model_name
     'Base'
+  end
+
+  def keychain
+    if @parent
+      [@parent.key] + [key]
+    else
+      [key]
+    end
+  end
+
+  def dom_id
+    "tag-" + keychain.join('-')
+  end
+
+  def collectible?
+    @parent && @parent.class == Contenticus::Tags::Collection
   end
 
 end

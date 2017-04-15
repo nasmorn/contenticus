@@ -2,14 +2,24 @@ module Contenticus::CmsHelper
 
   def cms(key, block: @block, collectible_layout: nil, layout: nil, &wrapper)
     tag = block.tag(key)
-    return unless tag.published?
     raise "Tag with key '#{key}' not found in block #{block.id} with layout '#{block.layout}'" unless tag
-    content = if layout
-      render partial: tag.frontend_partial, layout: layout, locals: {tag: tag}
-    else
-      render tag.frontend_partial, tag: tag, collectible_layout: collectible_layout
+
+    return unless tag.published?
+
+    # Set default layout for collections
+    layout ||= tag.collection_layout unless block_given? || !tag.respond_to?(:collection_layout)
+    # For layout try rendering - default layout might not exist
+    if layout
+      begin
+        return render partial: tag.frontend_partial, layout: layout, locals: {tag: tag, collectible_layout: collectible_layout}
+      rescue
+      end
     end
 
+    content = render tag.frontend_partial, tag: tag, collectible_layout: collectible_layout
+
+    # Use content of the block to wrap the call to cms
+    # this allows us to not render this content if published is set to false
     if block_given?
       content_for key do
         content
@@ -19,10 +29,6 @@ module Contenticus::CmsHelper
     else
       content
     end
-  end
-
-  def cms_wrap(key, block: @block, collectible_layout: nil, layout: nil, &wrapper)
-
   end
 
   def cms_tag(key, block: @block)

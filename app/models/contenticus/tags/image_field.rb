@@ -4,8 +4,8 @@ class ImageField < Base
 
   attr_reader :aspect_ratio_w, :aspect_ratio_h, :min_size_w, :min_size_h
 
-  def initialize(block, key:, name: nil, comment: nil, aspect_ratio: 'na', min_size: '0x0')
-    super block, key: key, name: name, comment: comment
+  def initialize(block, key:, name: nil, comment: nil, parent: parent, aspect_ratio: 'na', min_size: '0x0')
+    super block, key: key, name: name, comment: comment, parent: parent
     @aspect_ratio_w, @aspect_ratio_h = aspect_ratio.split(':').map &:to_i
     @min_size_w, @min_size_h = min_size.split('x').map &:to_i
     @values ||= {}

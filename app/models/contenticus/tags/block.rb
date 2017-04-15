@@ -4,8 +4,8 @@ class Block < Base
 
   attr_reader :min, :max
 
-  def initialize(values, key:, layout:, name: nil, comment: nil, toggle_published: false)
-    super values, key: key, name: name, comment: comment
+  def initialize(values, key:, layout:, name: nil, comment: nil, parent: nil, toggle_published: false)
+    super values, key: key, name: name, comment: comment, parent: parent
     @values ||= {}
     @layout_name = layout
     @toggle_published = toggle_published

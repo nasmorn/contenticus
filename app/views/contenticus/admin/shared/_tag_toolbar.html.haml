@@ -1,0 +1,19 @@
+.btn-toolbar.pull-right
+  - if collapse
+    .btn-group
+      = btn_collapse(collapse.fetch(:open), target: '#' + tag.dom_id)
+  - if tag.toggle_published?
+    .btn-group
+      - toggle_published_color = tag.published? ? 'success' : 'default'
+      = content_tag(:button, class: "btn btn-#{toggle_published_color}", onclick: "window.CMS.toggle_published(this); return false;") do
+        %span.glyphicon.glyphicon-off
+  - if collectible
+    .btn-group
+      .btn.btn-default
+        %span.dragger.icon
+          %span.glyphicon.glyphicon-move
+
+      %a.btn.btn-danger.remove-collectible
+        %span.glyphicon.glyphicon-remove
+  - if extra
+    .btn-group= extra

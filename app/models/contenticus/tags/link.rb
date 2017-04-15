@@ -4,8 +4,8 @@ class Link < Base
 
   attr_reader :accept_name
 
-  def initialize(values, key:, name: nil, comment: nil, accept_name: true, url_options: {})
-    super values, key: key, name: name, comment: comment
+  def initialize(values, key:, name: nil, comment: nil, parent: parent, accept_name: true, url_options: {})
+    super values, key: key, name: name, comment: comment, parent: parent
     @values ||= {}
     @url_options = url_options
     @accept_name = accept_name

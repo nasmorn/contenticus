@@ -14,8 +14,8 @@ class Contenticus::Layout
     "layouts/#{@identifier}"
   end
 
-  def frontend_path
-    'contenticus/' + path + "/main"
+  def frontend_path(name = 'main')
+    'contenticus/' + path + "/#{name}"
   end
 
   def tags_path

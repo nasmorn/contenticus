@@ -20,18 +20,6 @@
       position: absolute;
       border: none;
       top: 14px;
-
-      .glyphicon-triangle-bottom {
-        display: none;
-      }
-      &:hover {
-        .glyphicon-triangle-bottom  {
-          display: inline;
-        }
-        .glyphicon-triangle-right {
-          display: none;
-        }
-      }
     }
 
     .icon {
