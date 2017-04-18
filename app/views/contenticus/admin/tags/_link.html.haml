@@ -2,7 +2,7 @@
   .panel-body
     = tag_toolbar tag
     = form.fields_for tag.key, tag do |tag_form|
-      = tag_form.select :slug_id, options_for_select(Contenticus::Slug.all.pluck(:label, :id), tag.slug_id), label: 'Interne Seite', include_blank: true
+      = tag_form.select :slug_id, pages_for_select(tag.slug_id), {label: 'Interne Seite', include_blank: true}, {class: 'select2', style: 'width: 100%;'}
       = tag_form.text_field :href, label: 'Externe Url'
       = tag_form.text_field :name, label: 'Linkname' if tag.accept_name
       = tag_form.check_box  :blank, label: 'Link öffnet ein neues Fenster'

@@ -4,7 +4,7 @@ $:.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name          = "contenticus"
-  s.version       = "0.3"
+  s.version       = "0.4"
   s.authors       = ["Roman Almeida"]
   s.email         = ["post@romanalmeida.com"]
   s.homepage      = "http://github.com/nasmorn/contenticus"
@@ -33,4 +33,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass',        '>= 3.3.0'
   s.add_dependency 'kramdown',              '>= 1.13.2'
   s.add_dependency 'dragonfly',             '>= 1.0.10'
+  s.add_dependency 'select2-rails',         '>= 4.0.3'
 end

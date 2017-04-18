@@ -16,8 +16,4 @@ module Contenticus::AdminMarkupHelper
     render 'contenticus/admin/shared/tag_toolbar', tag: tag, collapse: collapse, collectible: tag.collectible?, extra: extra
   end
 
-  def icon(name)
-    content_tag('span', class: "glypicon glypicon-#{name}")
-  end
-
 end

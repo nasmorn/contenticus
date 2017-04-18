@@ -29,12 +29,14 @@ module Contenticus::CmsHelper
     else
       content
     end
+  rescue
   end
 
   def cms_tag(key, block: @block)
     tag = block.tag(key)
     raise "Tag with key '#{key}' not found in block #{block.inspect} with layout '#{block.layout}'" unless tag
     return tag
+  rescue
   end
 
   def cms_snippet(key)

@@ -1,5 +1,10 @@
 window.CMS ||= {}
 
+$(document).on 'turbolinks:load', ->
+  $(".select2").select2({
+      theme: "bootstrap"
+  });
+
 window.CMS.toggle_published = (link) ->
   checkbox = $(link).parents(".panel").find(':checkbox').first()
   original_state = checkbox.prop('checked')

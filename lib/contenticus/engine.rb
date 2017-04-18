@@ -14,6 +14,7 @@ require 'sass-rails'
 require 'coffee-rails'
 require 'codemirror-rails'
 require 'bootstrap-sass'
+require 'select2-rails'
 
 module Contenticus
   class Engine < ::Rails::Engine

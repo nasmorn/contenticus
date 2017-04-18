@@ -4,6 +4,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require jquery.Jcrop
+//= require select2
 
 //= require codemirror
 //= require codemirror/modes/css
@@ -18,3 +19,5 @@
 //= require contenticus/admin/formbar
 //= require contenticus/admin/add_fields
 //= require contenticus/admin/page
+
+//= require contenticus/admin/custom

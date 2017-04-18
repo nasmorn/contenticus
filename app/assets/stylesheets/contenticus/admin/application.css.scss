@@ -4,7 +4,12 @@
 @import "codemirror";
 @import "vendor/redactor";
 @import "jquery.Jcrop";
+@import "select2";
+@import "select2-bootstrap";
+
 @import "base";
 @import "collapse";
 @import "block_form";
 @import "page_index";
+
+@import "contenticus/admin/custom";
