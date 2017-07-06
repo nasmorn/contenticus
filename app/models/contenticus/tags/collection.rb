@@ -45,8 +45,9 @@ class Collection < Base
   end
 
   def serialize
+    serialized_tags = tags.map(&:serialize).inject({}, &:merge)
     {
-      key => published_tag.serialize.merge(tags.map(&:serialize).inject(&:merge))
+      key => published_tag.serialize.merge(serialized_tags)
     }
   end
 
