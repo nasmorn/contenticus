@@ -1,0 +1,11 @@
+%li.item
+  .btn-toolbar.pull-right
+    = link_to 'Show', contenticus_admin_block_path(block), class: "btn btn-primary"
+
+  .item-content
+    .item-title
+      = block.blockable.label
+    .item-meta
+      = block.blockable_type
+      /
+      = block.layout

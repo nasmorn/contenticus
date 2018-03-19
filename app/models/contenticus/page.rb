@@ -8,11 +8,21 @@ class Contenticus::Page < ActiveRecord::Base
 
   # Validations
 
+  def label
+    slug.try(:label) || "no slug"
+  end
+
   def redirect?
-    block.layout == 'redirect'
+    block.layout == 'system/redirect'
   end
 
   def redirect_target
+    if block.fields.has_key?('redirect')
+      return Contenticus::Slug.find(block.fields['redirect']['value']).full_path
+    else
+      raise
+    end
+  rescue
     if slug.children.any?
       slug.children.first.full_path
     else

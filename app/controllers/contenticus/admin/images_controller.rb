@@ -1,4 +1,4 @@
-class Contenticus::Admin::ImagesController < ApplicationController
+class Contenticus::Admin::ImagesController < Contenticus::Admin::BaseController
   layout "contenticus/admin"
 
   def index

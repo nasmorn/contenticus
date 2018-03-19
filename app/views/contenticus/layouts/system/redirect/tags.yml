@@ -1,0 +1,5 @@
+redirect:
+  type: select
+  model: 'Contenticus::Slug'
+  label: label
+  scope: for_select

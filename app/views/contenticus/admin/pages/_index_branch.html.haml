@@ -22,7 +22,7 @@
       %span.glyphicon.glyphicon-move.dragger
     .item-content
       .item-title= page.label
-      .item-meta= link_to page.full_path, page.full_path
+      .item-meta= link_to page.full_path, page.full_path, target: "_blank"
   - if children.any?
     %ul.sortable.collapse{id: "slug_#{page.id}", class: (branch_open ? 'in' : '')}
       - children.each do |page,children|

@@ -4,11 +4,9 @@
     %h3.panel-title
       = tag.name
   .panel-body.collapse{id: tag.dom_id}
-    .row
-      .col-sm-6
-        .fields-wrapper.sortable
-          = form.fields_for tag.key, tag do |tag_form|
-            - if tag.toggle_published?
-              = field_for_tag tag_form, tag.published_tag
-            - tag.tags.each do |nested_tag|
-              = field_for_tag tag_form, nested_tag
+    .fields-wrapper.sortable
+      = form.fields_for tag.key, tag do |tag_form|
+        - if tag.toggle_published?
+          = field_for_tag tag_form, tag.published_tag
+        - tag.tags.each do |nested_tag|
+          = field_for_tag tag_form, nested_tag

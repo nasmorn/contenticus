@@ -19,6 +19,9 @@ class Contenticus::Slug < ActiveRecord::Base
     uniqueness: { :scope => :ancestry },
     unless: lambda { |p| self.root? }
 
+  def self.for_select
+    where(true)
+  end
 
   def assign_full_path
     self.full_path = self.parent ?

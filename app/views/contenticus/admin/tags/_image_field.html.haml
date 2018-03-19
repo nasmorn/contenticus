@@ -14,6 +14,11 @@
 
       - if tag.image_exists?
         = image_tag tag.image.file.url, class: "jcrop"
+      %p.help-block
+        Format:
+        = [tag.aspect_ratio_w, tag.aspect_ratio_h].join(':')
+        Minimale Größe
+        = [tag.min_size_w, tag.min_size_h].join('x')
       - if tag.comment.present?
         %p.help-block
           = tag.comment

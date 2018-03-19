@@ -12,7 +12,8 @@ class ImageField < Base
   end
 
   def aspect_ratio_numeric
-    @aspect_ratio_w.to_f / @aspect_ratio_h.to_f
+    (@aspect_ratio_w.to_f /
+    @aspect_ratio_h.to_f)
   end
 
   def image_id

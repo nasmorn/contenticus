@@ -1,0 +1,13 @@
+%h3 Id
+= @block.id
+
+%h3 Blockable
+= @block.blockable_type
+= @block.blockable_id
+
+%h3 Layout
+= @block.layout
+
+%h3 Fields
+%pre
+  = pp JSON.pretty_generate(@block.fields)

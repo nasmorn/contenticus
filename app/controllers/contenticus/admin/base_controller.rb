@@ -1,5 +1,4 @@
-class Contenticus::Admin::BaseController < ApplicationController
-
+class Contenticus::Admin::BaseController < Contenticus.config.admin_base_controller.to_s.constantize
   layout 'contenticus/admin'
 
   private

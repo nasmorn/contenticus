@@ -1,0 +1,8 @@
+%h1
+  Blocks
+
+%hr
+
+%ul.list.sortable.sluggable-list
+  - @blocks.each do |block|
+    = render 'line', block: block

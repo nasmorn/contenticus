@@ -19,5 +19,6 @@
 //= require contenticus/admin/formbar
 //= require contenticus/admin/add_fields
 //= require contenticus/admin/page
+//= require contenticus/admin/collapse
 
 //= require contenticus/admin/custom

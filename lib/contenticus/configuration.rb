@@ -13,11 +13,15 @@ class Contenticus::Configuration
   # Maximum amount of characters a title can have including the appended text
   attr_accessor :meta_title_max_characters
 
+  # Which controller Contenticus::Admin::BaseController inherits from
+  attr_accessor :admin_base_controller
+
   # Configuration defaults
   def initialize
     @meta_no_index = false
     @meta_title_append = ""
     @meta_title_max_characters = 60
+    @admin_base_controller = "ApplicationController"
   end
 
 end
