@@ -34,6 +34,12 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
     end
   end
 
+  def change_template
+    @page = Contenticus::Page.find(params[:id])
+    ::Contenticus::Admin::ChangeTemplate.call(block: @page.block, template: params.fetch(:template))
+    redirect_to contenticus_admin_pages_path
+  end
+
   def destroy
     success = ::Contenticus::Admin::DestroyPage.call(page_id: params[:id])
     flash[:danger] = 'Cannot delete page with children.' unless success
