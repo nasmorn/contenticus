@@ -7,6 +7,7 @@ class Contenticus::Layout
   end
 
   def tags
+    return [] if redirect?
     @tags ||= parse(tags_path)
   end
 
@@ -40,6 +41,10 @@ class Contenticus::Layout
     Dir.glob(File.expand_path(sub_path + '/' + type + '/*/', Rails.root)).collect do |filename|
       filename.gsub!("#{File.expand_path(sub_path, Rails.root)}/", '')
     end.compact.sort
+  end
+
+  def redirect?
+    @identifier == 'redirect'
   end
 
 end

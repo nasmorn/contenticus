@@ -8,6 +8,10 @@
   = render 'layouts/contenticus/admin/formbar', f: f
 
   = f.fields_for :block do |block_form|
+    = block_form.select :layout, @layouts, {selected: @block.layout }
+    %p.help-block
+      Wenn das Layout geändert wird, kann der gesamte Content verloren gehen!
+
     - @block.tags.each do |tag|
       = field_for_tag(block_form, tag)
 

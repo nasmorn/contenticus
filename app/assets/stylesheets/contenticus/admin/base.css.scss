@@ -29,3 +29,12 @@
     cursor: inherit;
     display: block;
 }
+
+.form-horizontal p.help-block {
+    margin-top: -10px;
+    @extend .col-sm-10;
+    @extend .col-sm-push-2;
+    & + * {
+        clear: left;
+    }
+}

@@ -8,6 +8,10 @@ class UpdateBlock < ::Contenticus::Interactor
   end
 
   def call
+    if @params[:layout].present?
+      @block.layout = @params.fetch(:layout)
+    end
+
     @tags = @block.tags.map do |tag|
       # We might just want to update some of the tags
       if @params.has_key?(tag.key)
