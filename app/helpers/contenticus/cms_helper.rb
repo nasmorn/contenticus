@@ -1,6 +1,6 @@
 module Contenticus::CmsHelper
 
-  def cms(key, block: @block, collectible_layout: nil, layout: nil, &wrapper)
+  def cms(key, block: @block, collectible_layout: nil, layout: nil, position: nil, &wrapper)
     tag = block.tag(key)
     raise "Tag with key '#{key}' not found in block #{block.id} with layout '#{block.layout}'" unless tag
 
@@ -16,7 +16,7 @@ module Contenticus::CmsHelper
       end
     end
 
-    content = render tag.frontend_partial, tag: tag, collectible_layout: collectible_layout
+    content = render tag.frontend_partial, tag: tag, collectible_layout: collectible_layout, position: position
 
     # Use content of the block to wrap the call to cms
     # this allows us to not render this content if published is set to false
