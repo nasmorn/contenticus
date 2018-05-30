@@ -8,7 +8,7 @@
     .btn-toolbar.pull-right
       .btn-group
         = link_to "Add Subpage", new_contenticus_admin_page_path(parent_id: page.id), class: "btn btn-default"
-        = link_to contenticus_admin_page_path(page.sluggable), method: 'delete', class: "btn btn-danger" do
+        = link_to contenticus_admin_page_path(page.sluggable), method: 'delete', class: "btn btn-danger", 'data-confirm' => "Seite '#{page.label}' wirklich löschen?" do
           %span.glyphicon.glyphicon-remove
       .btn-group{'data-toggle' => 'tooltip', 'data-placement' => "left", 'title' => toggle_tooltip}
         = link_to toggle_contenticus_admin_block_path(block), method: 'put', class: "btn #{toggle_class}" do

@@ -18,7 +18,11 @@ class Contenticus::Admin::ImagesController < Contenticus::Admin::BaseController
 
   def create
     @image = Contenticus::Image.create(image_params)
-    redirect_to contenticus_admin_images_path
+    if @image.persisted?
+      redirect_to contenticus_admin_images_path
+    else
+      render 'new'
+    end
   end
 
   def edit
