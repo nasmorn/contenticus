@@ -1,12 +1,17 @@
-= f.select :block_id, image_block_options, include_blank: true
+/ = f.select :block_id, image_block_options, include_blank: true
 
-.row
-  .col-sm-2
+- error = f.object.errors.has_key?(:file)
+- css = error ? "form-group has-error" : "form-group"
+%div{class: css}
+  = label_tag "file", 'File', class: 'control-label col-sm-2 required'
   .col-sm-10
-    = label_tag "file", class: 'btn btn-default btn-lg btn-file' do
+    - css_class = 'has-error'
+    = button_tag class: 'btn btn-default btn-lg btn-file' do
       %span.glyphicon.glyphicon-cloud-upload
-      Bild Hochladen
+      %span.filename Bild Hochladen
       = f.file_field_without_bootstrap :file
+    - if error
+      %span.help-block muss ausgefüllt werden
 %br
 
 = f.text_field :file_name

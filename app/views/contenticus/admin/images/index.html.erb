@@ -17,6 +17,7 @@
     <div class="item-content">
       <div class="item-title">
         <%= image.file_name %>
+        <%= image.file_width %>x<%= image.file_height %>
       </div>
       <div class="item-meta">
         <%= image_tag image.file.thumb("50x50#").url %>

@@ -10,8 +10,16 @@ module Contenticus::CmsAdminHelper
     end
   end
 
-  def image_field_options(block)
-    Contenticus::Image.where(block: block).pluck(:file_name, :id) + Contenticus::Image.where(block: nil).pluck(:file_name, :id).map {|i| ['General ' + i.first, i.last]}
+  def image_field_options(block, min_size_w: nil, min_size_h: nil)
+    scope = Contenticus::Image.where(block: [block, nil])
+    scope = scope.where("file_width >= ?", min_size_w) if min_size_w
+    scope = scope.where("file_height >= ?", min_size_h) if min_size_h
+    scope.order(:block_id, :file_name).select(:block_id, :file_name, :file_width, :file_height, :id).map do |image|
+      [
+        [image.block_id == block.id ? nil : 'General' ,image.file_name, [image.file_width, image.file_height].join("x")].compact.join(" - "),
+        image.id
+      ]
+    end
   end
 
   def pages_for_select(selected_key)

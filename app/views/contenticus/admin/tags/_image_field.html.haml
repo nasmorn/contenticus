@@ -2,7 +2,7 @@
   .panel-body
     = tag_toolbar(tag)
     = form.fields_for tag.key, tag do |tag_form|
-      = tag_form.select :image_id, options_for_select(image_field_options(@block), tag.image_id), label: 'Bild'
+      = tag_form.select :image_id, options_for_select(image_field_options(@block, min_size_w: tag.min_size_w, min_size_h: tag.min_size_h), tag.image_id), label: 'Bild'
       = tag_form.hidden_field :crop_x, class: "crop_x"
       = tag_form.hidden_field :crop_y, class: "crop_y"
       = tag_form.hidden_field :crop_h, class: "crop_h"
@@ -15,6 +15,7 @@
       - if tag.image_exists?
         = image_tag tag.image.file.url, class: "jcrop"
       %p.help-block
+        %br
         Format:
         = [tag.aspect_ratio_w, tag.aspect_ratio_h].join(':')
         Minimale Größe
