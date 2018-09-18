@@ -2,5 +2,5 @@
   = tag_form.select :slug_id, options_for_select(Contenticus::Slug.all.pluck(:label, :id), :slug_id), label: 'Interne Seite', include_blank: true
   = tag_form.text_field :href, label: 'Beliebige Url'
   - if tag.comment.present?
-  %p.help-block
-    = tag.comment
+    %p.help-block
+      = tag.comment
