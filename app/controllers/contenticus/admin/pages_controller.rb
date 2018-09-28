@@ -18,6 +18,10 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
     redirect_to contenticus_admin_pages_path
   end
 
+  def show
+    redirect_to edit_contenticus_admin_page_path(id: params[:id])
+  end
+
   def edit
     @page = Contenticus::Page.find(params[:id])
     @block = @page.block

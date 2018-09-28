@@ -4,11 +4,12 @@ class Block < Base
 
   attr_reader :min, :max
 
-  def initialize(values, key:, layout:, name: nil, comment: nil, parent: nil, toggle_published: false)
+  def initialize(values, key:, layout:, name: nil, comment: nil, parent: nil, toggle_published: false, open_by_default: false)
     super values, key: key, name: name, comment: comment, parent: parent
     @values ||= {}
     @layout_name = layout
     @toggle_published = toggle_published
+    @open_by_default = open_by_default
   end
 
   def tag(key)
@@ -56,6 +57,10 @@ class Block < Base
 
   def toggle_published?
     @toggle_published
+  end
+
+  def open_by_default?
+    @open_by_default
   end
 
 end

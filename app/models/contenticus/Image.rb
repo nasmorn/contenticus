@@ -5,4 +5,8 @@ class Contenticus::Image < ActiveRecord::Base
 
   validates_presence_of :file_name, :file
   dragonfly_accessor :file
+
+  def published?
+    is_published
+  end
 end

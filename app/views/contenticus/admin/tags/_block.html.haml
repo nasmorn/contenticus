@@ -1,9 +1,9 @@
 .block.panel.panel-default.fields
   .panel-heading
-    = tag_toolbar tag, collapse: {open: false}
+    = tag_toolbar tag, collapse: {open: tag.open_by_default?}
     %h3.panel-title
       = tag.name
-  .panel-body.collapse{id: tag.dom_id}
+  .panel-body.collapse{id: tag.dom_id, class: tag.open_by_default? ? 'in' : ''}
     .fields-wrapper.sortable
       = form.fields_for tag.key, tag do |tag_form|
         - if tag.toggle_published?
