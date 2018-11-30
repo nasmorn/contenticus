@@ -7,7 +7,7 @@ class Contenticus::Meta
     Contenticus::Meta.new({
       title: title,
       description: page.meta.tag(:description).value,
-      index: !page.meta.tag(:no_index),
+      index: !page.meta.tag(:no_index).value,
     })
   end
 
