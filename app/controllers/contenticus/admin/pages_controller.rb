@@ -1,7 +1,7 @@
 class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
   layout "contenticus/admin"
 
-  before_action :provide_layouts, only: [:new, :edit, :update]
+  before_action :provide_layouts, only: [:new, :edit, :update, :create]
 
   def index
     @pages = Contenticus::Slug.where(sluggable_type: "Contenticus::Page").includes(sluggable: :block).arrange(order: "position")
@@ -9,13 +9,18 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
 
   def new
     build_page
-    @slug = ::Contenticus::Slug.new
     @page.slug.parent_id = params[:parent_id] if params[:parent_id]
   end
 
   def create
     @page = ::Contenticus::Admin::CreatePage.call(slug_params: create_slug_params, block_params: create_block_params)
-    redirect_to contenticus_admin_pages_path
+    if @page.persisted? && save_and_close?
+      redirect_to contenticus_admin_pages_path
+    elsif @page.persisted?
+      redirect_to edit_contenticus_admin_page_path(@page)
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -61,7 +66,7 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
   private
 
   def provide_layouts
-    @layouts = ['redirect'] + ::Contenticus::Layout.available_for('pages')
+    @layouts = ['system/redirect'] + ::Contenticus::Layout.available_for('pages')
   end
 
   def create_slug_params

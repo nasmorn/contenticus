@@ -17,7 +17,8 @@ class Contenticus::Slug < ActiveRecord::Base
   validates :slug,
     presence: true,
     uniqueness: { :scope => :ancestry },
-    unless: lambda { |p| self.root? }
+    unless: lambda { |p| self.root? },
+    slug: true
 
   def self.for_select
     where(true)

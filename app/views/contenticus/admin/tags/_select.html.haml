@@ -3,4 +3,4 @@
     = tag_toolbar tag
     %br
     = form.fields_for tag.key, tag do |tag_form|
-      = tag_form.select :value, options_for_select(tag.options, tag.value), {include_blank: true}, {class: 'select2', style: 'width: 100%;'}
+      = tag_form.select :value, options_for_select(tag.options, tag.value), {include_blank: true, label: tag.name}, {class: 'select2', style: 'width: 100%;'}

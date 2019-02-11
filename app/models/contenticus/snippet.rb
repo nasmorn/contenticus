@@ -4,6 +4,9 @@ class Contenticus::Snippet < ActiveRecord::Base
   # Relationships
   has_one :block, -> { master }, as: :blockable, class_name: Contenticus::Block
 
+  validates :label, presence: true
+  validates :key, presence: true, slug: true
+
   def contenticus_label
     label
   end

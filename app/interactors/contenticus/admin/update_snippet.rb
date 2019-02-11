@@ -9,7 +9,7 @@ class UpdateSnippet < ::Contenticus::Interactor
 
   def call
     tags = UpdateBlock.call(block_id: @snippet.block.id, params: @params)
-    return @snippet, tags
+    return @snippet
   end
 
 end

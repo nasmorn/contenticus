@@ -3,5 +3,6 @@
 = bootstrap_form_for @snippet, url: contenticus_admin_snippet_path, method: 'put', layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10" do |f|
 
   = render 'layouts/contenticus/admin/formbar', f: f
-  - @tags.each do |tag|
-    = field_for_tag(f, tag)
+  = f.fields_for :block do |block_form|
+    - @block.tags.each do |tag|
+      = field_for_tag(block_form, tag)

@@ -2,7 +2,7 @@ module Contenticus
 module Tags
 class Boolean < Base
 
-  def initialize(values, key:, name: nil, comment: nil, hidden: false, parent: parent)
+  def initialize(values, key:, name: nil, comment: nil, hidden: false, parent: nil)
     super values, key: key, name: name, comment: comment, parent: parent
     @hidden = hidden
   end

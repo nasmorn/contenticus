@@ -20,10 +20,11 @@ class Contenticus::Layout
   end
 
   def tags_path
-    if @identifier =~ /\Asystem/
-      Contenticus::Engine.root.join('app', 'views', 'contenticus', 'layouts', @identifier, 'tags.yml')
+    app_path = 'app/views/contenticus/' + path + "/tags.yml"
+    if File.exists?(app_path)
+      app_path
     else
-      'app/views/contenticus/' + path + "/tags.yml"
+      Contenticus::Engine.root.join('app', 'views', 'contenticus', 'layouts', @identifier, 'tags.yml')
     end
   end
 

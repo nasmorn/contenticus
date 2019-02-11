@@ -36,7 +36,6 @@ module Contenticus::CmsHelper
     tag = block.tag(key)
     raise "Tag with key '#{key}' not found in block #{block.inspect} with layout '#{block.layout}'" unless tag
     return tag
-  rescue
   end
 
   def cms_snippet(key)
@@ -45,7 +44,7 @@ module Contenticus::CmsHelper
 
   def cms_snippet_render(key)
     @block = cms_snippet(key).block
-    render @block.frontend_partial
+    render @block.frontend_partial, block: @block
   end
 
   def cms_meta
