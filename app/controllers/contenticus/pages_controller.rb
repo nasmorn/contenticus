@@ -1,7 +1,7 @@
 class Contenticus::PagesController < ApplicationController
 
   def show
-    @page = Contenticus::Slug.find_by(full_path: "/#{params[:cms_path]}").sluggable
+    @page = find_page
     @block = @page.block
     @meta = Contenticus::Meta.from_page(@page)
 
@@ -10,6 +10,12 @@ class Contenticus::PagesController < ApplicationController
     else
       render @block.frontend_layout
     end
+  end
+
+  private
+
+  def find_page
+    Contenticus::Slug.find_by!(full_path: "/#{params[:cms_path]}").sluggable
   end
 
 end

@@ -11,6 +11,7 @@
   <li class="item">
 
     <div class="btn-toolbar pull-right">
+      <%= link_to "Download", image.file.url, class: "btn btn-success", target: '_blank' %>
       <%= link_to "Edit", edit_contenticus_admin_image_path(image), class: "btn btn-primary" %>
     </div>
 
