@@ -4,7 +4,7 @@ $:.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name          = "contenticus"
-  s.version       = "0.5.1"
+  s.version       = "0.5.2"
   s.authors       = ["Roman Almeida"]
   s.email         = ["post@romanalmeida.com"]
   s.homepage      = "http://github.com/nasmorn/contenticus"
@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 1.9.3'
 
-  s.add_dependency 'rails',                 '>= 4.0.0', '< 5'
+  s.add_dependency 'rails',                 '>= 4.0.0'
   s.add_dependency 'rails-i18n',            '>= 4.0.0'
   s.add_dependency 'pg'
   s.add_dependency 'ancestry'
