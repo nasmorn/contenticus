@@ -31,8 +31,8 @@ class Base
 
   def value
     if @values.kind_of?(Hash)
-      if @values.has_key?(:value) && @values.keys.count == 1
-        @values.fetch(:value)
+      if @values.with_indifferent_access.has_key?(:value) && @values.keys.count == 1
+        @values.with_indifferent_access.fetch(:value)
       end
     else
       @values

@@ -14,7 +14,7 @@ class UpdateBlock < ::Contenticus::Interactor
 
     @tags = @block.tags.map do |tag|
       # We might just want to update some of the tags
-      if @params.has_key?(tag.key)
+      if @params.to_h.has_key?(tag.key)
         tag.update_attributes(@params.fetch(tag.key))
       end
       tag

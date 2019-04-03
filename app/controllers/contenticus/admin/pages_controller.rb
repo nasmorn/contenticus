@@ -78,7 +78,7 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
   end
 
   def page_params
-    params.fetch(:contenticus_page).permit!
+    params.fetch(:contenticus_page).permit!.to_h
   end
 
   def build_page

@@ -27,19 +27,18 @@ class Block < Base
   def update_attributes(params)
     @values = params
     if @values.has_key?('contenticus-published')
-      published_tag.update_attributes(@values.fetch('contenticus-published'))
-      @values.delete('contenticus-published')
+      published_tag.update_attributes(@values.delete('contenticus-published'))
     end
     tags.each do |tag|
       tag.update_attributes(@values.fetch(tag.key))
     end
-  rescue
-    raise "#{@values.inspect} #{key}"
+  # rescue
+  #   raise "#{@values.inspect} #{key}"
   end
 
   def serialize
     {
-      key =>  published_tag.serialize.merge(tags.map(&:serialize).inject(&:merge))
+      key => published_tag.serialize.merge(tags.map(&:serialize).inject(&:merge))
     }
   end
 

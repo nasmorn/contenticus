@@ -36,7 +36,7 @@ class Link < Base
   end
 
   def update_attributes(params)
-    @values = params.permit(:slug_id, :href, :blank, :name)
+    @values = params.slice(:slug_id, :href, :blank, :name)
   end
 
   def url

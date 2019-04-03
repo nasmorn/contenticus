@@ -4,7 +4,7 @@ class ImageField < Base
 
   attr_reader :aspect_ratio_w, :aspect_ratio_h, :min_size_w, :min_size_h
 
-  def initialize(block, key:, name: nil, comment: nil, parent: parent, aspect_ratio: 'na', min_size: '0x0')
+  def initialize(block, key:, name: nil, comment: nil, parent: nil, aspect_ratio: 'na', min_size: '0x0')
     super block, key: key, name: name, comment: comment, parent: parent
     @aspect_ratio_w, @aspect_ratio_h = aspect_ratio.split(':').map &:to_i
     @min_size_w, @min_size_h = min_size.split('x').map &:to_i
@@ -49,7 +49,7 @@ class ImageField < Base
   end
 
   def update_attributes(params)
-    @values = params.permit(:image_id, :crop_x, :crop_y, :crop_h, :crop_w)
+    @values = params.slice(:image_id, :crop_x, :crop_y, :crop_h, :crop_w)
   end
 
   def cropped_url
