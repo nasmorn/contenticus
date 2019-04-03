@@ -20,7 +20,7 @@ class ActionDispatch::Routing::Mapper
 
   def contenticus_route_cms(option = {})
     scope :module => :contenticus, :as => :contenticus do
-      get '/:format' => 'pages#show', :as => 'render_page', :path => "(*cms_path)"
+       get '(*cms_path)' => 'pages#show', :as => 'render_page', action: '/:format'
     end
   end
 

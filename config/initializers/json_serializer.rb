@@ -4,6 +4,14 @@ class JsonSerializer
   end
 
   def self.load(hash)
-    (hash || {}).with_indifferent_access
+    if hash.kind_of?(Hash)
+      hash.with_indifferent_access
+    elsif hash.kind_of?(String)
+      JSON.parse(hash).with_indifferent_access
+    elsif hash.nil?
+     {}.with_indifferent_access
+    else
+      raise hash.inspect
+    end
   end
 end

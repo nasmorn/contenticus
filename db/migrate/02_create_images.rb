@@ -1,4 +1,4 @@
-class CreateImages < ActiveRecord::Migration
+class CreateImages < ActiveRecord::Migration[4.2]
   def change
     create_table :contenticus_images do |t|
       t.references :block

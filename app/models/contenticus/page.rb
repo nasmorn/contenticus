@@ -2,9 +2,9 @@ class Contenticus::Page < ActiveRecord::Base
   self.table_name = "contenticus_pages"
 
   # Relationships
-  has_one :block, -> { master }, as: :blockable, class_name: Contenticus::Block
-  has_one :meta, -> { section('meta') }, as: :blockable, class_name: Contenticus::Block
-  has_one :slug, as: :sluggable, class_name: ::Contenticus::Slug, autosave: true
+  has_one :block, -> { master }, as: :blockable, class_name: "Contenticus::Block"
+  has_one :meta, -> { section('meta') }, as: :blockable, class_name: "Contenticus::Block"
+  has_one :slug, as: :sluggable, class_name: "::Contenticus::Slug", autosave: true
 
   def label
     slug.try(:label) || "no slug"

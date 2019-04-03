@@ -13,7 +13,7 @@ class Base
   end
 
   def type
-    self.class.name.underscore.split('/').last
+    self.class.to_s.underscore.split('/').last
   end
 
   def self.instantiate(fields, key, options_from_layout)
@@ -72,7 +72,7 @@ class Base
   end
 
   def self.model_name
-    'Base'
+    Base
   end
 
   def keychain
