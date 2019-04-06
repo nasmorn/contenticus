@@ -70,11 +70,11 @@ class Contenticus::Admin::PagesController < Contenticus::Admin::BaseController
   end
 
   def create_slug_params
-    page_params.fetch(:slug).permit(:slug, :label, :parent_id)
+    page_params.fetch(:slug).slice(:slug, :label, :parent_id)
   end
 
   def create_block_params
-    page_params.fetch(:block).permit(:layout)
+    page_params.fetch(:block).slice(:layout)
   end
 
   def page_params

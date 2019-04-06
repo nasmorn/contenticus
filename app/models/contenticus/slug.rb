@@ -21,7 +21,7 @@ class Contenticus::Slug < ActiveRecord::Base
     slug: true
 
   def self.for_select
-    where(true)
+    all
   end
 
   def assign_full_path
