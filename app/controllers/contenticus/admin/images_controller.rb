@@ -35,6 +35,13 @@ class Contenticus::Admin::ImagesController < Contenticus::Admin::BaseController
     redirect_to contenticus_admin_images_path
   end
 
+  def destroy
+    @image = Contenticus::Image.find(params[:id])
+    @image.destroy
+    flash[:success] = "Snippet wurde gelöscht!"
+    redirect_to contenticus_admin_images_path
+  end
+
   private
 
   def image_params

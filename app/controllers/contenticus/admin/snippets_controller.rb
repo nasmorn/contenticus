@@ -38,18 +38,19 @@ class Contenticus::Admin::SnippetsController < Contenticus::Admin::BaseControlle
   end
 
   def destroy
-    ::Contenticus::Snippet.find(params[:id]).destroy
-    redirect_to contenticus_admin_pages_path
+    success = ::Contenticus::Admin::SnippetDestroy.call(params[:id])
+    flash[:success] = "Snippet wurde gelöscht!"
+    redirect_to contenticus_admin_snippets_path
   end
 
   private
 
   def create_block_params
-    snippet_params.fetch(:block).permit(:layout)
+    snippet_params.fetch(:block).slice(:layout)
   end
 
   def snippet_params
-    params.fetch(:contenticus_snippet)
+    params.fetch(:contenticus_snippet).permit!.to_h
   end
 
   def build_snippet

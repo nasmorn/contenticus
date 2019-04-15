@@ -13,6 +13,9 @@
     <div class="btn-toolbar pull-right">
       <%= link_to "Download", image.file.url, class: "btn btn-success", target: '_blank' %>
       <%= link_to "Edit", edit_contenticus_admin_image_path(image), class: "btn btn-primary" %>
+      <%= link_to contenticus_admin_image_path(image), method: 'delete', class: "btn btn-danger", 'data-confirm' => "Bild wirklich löschen?" do %>
+        <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
     </div>
 
     <div class="item-content">
