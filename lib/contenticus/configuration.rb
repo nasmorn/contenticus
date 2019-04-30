@@ -16,8 +16,12 @@ class Contenticus::Configuration
   # Which controller Contenticus::Admin::BaseController inherits from
   attr_accessor :admin_base_controller
 
+  # If the cms should reraise exceptions during render calls
+  attr_accessor :raise_during_render
+
   # Configuration defaults
   def initialize
+    @raise_during_render = false
     @meta_no_index = false
     @meta_title_append = ""
     @meta_title_max_characters = 60

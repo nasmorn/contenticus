@@ -29,7 +29,8 @@ module Contenticus::CmsHelper
     else
       content
     end
-  rescue
+  rescue => e
+    raise e if Contenticus.config.raise_during_render
   end
 
   def cms_tag(key, block: @block)
