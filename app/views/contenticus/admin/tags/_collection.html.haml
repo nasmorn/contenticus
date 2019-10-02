@@ -1,5 +1,5 @@
 .section.panel.panel-default
-  = form.fields_for tag.key, tag do |tag_form|
+  = cms_tag_form(tag: tag, form: form) do |tag_form|
     .panel-heading
       = tag_toolbar(tag, collapse: {open: true}) do
         - fields = content_tag(:div, field_for_tag(tag_form, tag.add_tag), class: 'collectible')

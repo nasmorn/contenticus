@@ -16,4 +16,11 @@ module Contenticus::AdminMarkupHelper
     render 'contenticus/admin/shared/tag_toolbar', tag: tag, collapse: collapse, collectible: tag.collectible?, extra: extra
   end
 
+  def cms_tag_form(form:, tag:, &block)
+    form.fields_for tag.key, tag do |tag_form|
+      yield(tag_form)
+      concat render("contenticus/admin/shared/tag_form", tag: tag, tag_form: tag_form)
+    end
+  end
+
 end

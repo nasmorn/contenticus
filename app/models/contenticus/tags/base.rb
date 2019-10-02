@@ -25,13 +25,13 @@ class Base
     end.with_indifferent_access
 
     ("Contenticus::Tags::" + options.delete(:type).classify).constantize.new(fields[options.fetch(:key)], options.symbolize_keys)
-  rescue
-    raise "Key: #{key} - options: #{options_from_layout} - fields: #{fields}"
+  #rescue
+    #raise "Key: #{key} - options: #{options_from_layout} - fields: #{fields}"
   end
 
   def value
     if @values.kind_of?(Hash)
-      if @values.with_indifferent_access.has_key?(:value) && @values.keys.count == 1
+      if @values.with_indifferent_access.has_key?(:value)
         @values.with_indifferent_access.fetch(:value)
       end
     else
@@ -88,7 +88,19 @@ class Base
   end
 
   def collectible?
-    @parent && @parent.class == Contenticus::Tags::Collection
+    @parent && @parent.collectible?
+  end
+
+  def published?
+    true
+  end
+
+  def toggle_published?
+    false
+  end
+
+  def open_by_default?
+    true
   end
 
 end

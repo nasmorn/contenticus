@@ -1,17 +1,36 @@
 module Contenticus
 module Tags
-class Collection < Base
+class Mixed < Base
+  class MixedTagDecorator < SimpleDelegator
+    def initialize(object, mixed_key)
+      super(object)
+      @mixed_key = mixed_key
+    end
 
-  attr_reader :min, :max
+    def mixed_key
+      @mixed_key
+    end
 
-  def initialize(values, key:, tag:, name: nil, comment: nil, min: 0, max: nil, parent: nil)
+    def mixed_key=(value)
+    end
+
+    def collectible?
+      true
+    end
+  end
+
+  def initialize(values, key:, tags:, name: nil, comment: nil)
     super values, key: key, name: name, comment: comment
-    @min = min
-    @max = max
     @values ||= {}
-    @options = tag.with_indifferent_access
-    @type = @options.fetch(:type)
-    @parent = parent
+    @options = tags
+  end
+
+  def keys
+    @options.keys
+  end
+
+  def options_for(key)
+    @options[key.to_s].with_indifferent_access
   end
 
   def tag(key)
@@ -19,20 +38,17 @@ class Collection < Base
   end
 
   def tags
-    new_tags = []
-    collectible_values.each do |k,v|
-      new_tags << instantiate({k => v}, k)
+    collectible_values.map do |k,v|
+      instantiate(v.with_indifferent_access[:mixed_key], {k => v}, k)
     end
-    if new_tags.count < @min
-      ((new_tags.count + 1)..@min).to_a.each do |i|
-        new_tags << instantiate({}, i.to_s)
-      end
-    end
-    new_tags
   end
 
-  def instantiate(values, new_key)
-    Contenticus::Tags::Base.instantiate(values, @type, @options.merge(key: new_key, name: @name, parent: self))
+  def instantiate(key, values, new_key)
+    raise "Key cannot be nil" unless key
+    type = options_for(key).fetch(:type)
+    MixedTagDecorator.new(
+      Contenticus::Tags::Base.instantiate(values, type, options_for(key).merge(key: new_key, parent: self)),
+      key)
   end
 
   def update_attributes(params)
@@ -46,14 +62,18 @@ class Collection < Base
   end
 
   def serialize
-    serialized_tags = tags.map(&:serialize).inject({}, &:merge)
+    serialized_tags = tags.map do |tag|
+      s = tag.serialize
+      s.values.first.merge!(mixed_key: tag.mixed_key)
+      s
+    end.inject({}, &:merge)
     {
       key => published_tag.serialize.merge(serialized_tags)
     }
   end
 
-  def add_tag
-    instantiate({}, 'contenticus-additional')
+  def add_tag(key)
+    instantiate(key, {}, 'contenticus-additional')
   end
 
   def published_tag
