@@ -1,4 +1,4 @@
 / When we have the tag in a mixed collection
 / we need to know which key to instantiate for
 - if tag.respond_to?(:mixed_key)
-  = tag_form.text_field(:mixed_key)
+  = tag_form.hidden_field(:mixed_key)
