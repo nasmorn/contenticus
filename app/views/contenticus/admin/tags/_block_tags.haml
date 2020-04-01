@@ -1,0 +1,5 @@
+= cms_tag_form(tag: tag, form: form) do |tag_form|
+  - if tag.toggle_published?
+    = field_for_tag tag_form, tag.published_tag
+  - tag.tags.each do |nested_tag|
+    = field_for_tag tag_form, nested_tag

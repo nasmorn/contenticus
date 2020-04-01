@@ -2,14 +2,15 @@ module Contenticus
 module Tags
 class Block < Base
 
-  attr_reader :min, :max
+  attr_reader :min, :max, :wrap_in_admin
 
-  def initialize(values, key:, layout:, name: nil, comment: nil, parent: nil, toggle_published: false, open_by_default: false)
+  def initialize(values, key:, layout:, name: nil, comment: nil, parent: nil, toggle_published: false, open_by_default: false, wrap_in_admin: true)
     super values, key: key, name: name, comment: comment, parent: parent
     @values ||= {}
     @layout_name = layout
     @toggle_published = toggle_published
     @open_by_default = open_by_default
+    @wrap_in_admin = wrap_in_admin
   end
 
   def tag(key)

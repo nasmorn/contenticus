@@ -1,12 +1,11 @@
-.block.panel.panel-default.fields
-  .panel-heading
-    = tag_toolbar tag, collapse: {open: tag.open_by_default?}
-    %h3.panel-title
-      = tag.name
-  .panel-body.collapse{id: tag.dom_id, class: tag.open_by_default? ? 'in' : ''}
-    .fields-wrapper.sortable
-      = cms_tag_form(tag: tag, form: form) do |tag_form|
-        - if tag.toggle_published?
-          = field_for_tag tag_form, tag.published_tag
-        - tag.tags.each do |nested_tag|
-          = field_for_tag tag_form, nested_tag
+- if tag.wrap_in_admin
+  .block.panel.panel-default.fields
+    .panel-heading
+      = tag_toolbar tag, collapse: {open: tag.open_by_default?}
+      %h3.panel-title
+        = tag.name
+    .panel-body.collapse{id: tag.dom_id, class: tag.open_by_default? ? 'in' : ''}
+      .fields-wrapper.sortable
+        = render "/contenticus/admin/tags/block_tags", tag: tag, form: form
+- else
+  = render "/contenticus/admin/tags/block_tags", tag: tag, form: form
