@@ -4,4 +4,26 @@ Contenticus needs at least ruby 2.3
 
 == Gems
 
-You need to add `jrop-rails-v2` into the `Gemfile` of your application to allow the import in the css to work.
+You need to add `jcrop-rails-v2` into the `Gemfile` of your application to allow the import in the css to work.
+
+== Copy Migrations
+
+The migrations need to be copied over manually
+
+
+== Add config entries
+
+Add `initializers/dragonfly.rb` if you want to save images to a cloud bucket
+
+Add `contenticus_route :cms_admin` to `routes.rb`
+
+If you use sprockets add these lines to your `manifest.js`
+
+```
+  //= link contenticus/admin/application.css
+  //= link contenticus/admin/application.js
+```
+
+== Create the contenticus folder and make a template
+
+Create a contenticus folder in views `contenticus/layouts/pages`
