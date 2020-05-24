@@ -4,7 +4,7 @@ gemspec
 gem "rails", "5.2.2"
 gem "jcrop-rails-v2"
 gem "turbolinks"
-gem "rake", "~> 10.4"
+gem "rake", "~> 12.3"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
