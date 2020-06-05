@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contenticus (0.7.2)
+    contenticus (0.7.3)
       ancestry
       bootstrap-sass (>= 3.3.0)
       bootstrap_form (>= 2.3.0)
@@ -111,7 +111,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     fabrication (2.21.1)
-    ffi (1.12.2)
+    ffi (1.13.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.1.2)
@@ -212,7 +212,7 @@ GEM
       sexp_processor (~> 4.9)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.3.0)
+    sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
       railties (>= 4.0.0)
@@ -247,7 +247,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     zeitwerk (2.3.0)
 
 PLATFORMS
