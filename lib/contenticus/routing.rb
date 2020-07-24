@@ -1,6 +1,5 @@
 class ActionDispatch::Routing::Mapper
-
-   def contenticus_route_cms_admin(options = {})
+  def contenticus_route_cms_admin(options = {})
     options[:path] ||= 'admin'
 
     scope :module => :contenticus, :as => :contenticus do
@@ -18,14 +17,19 @@ class ActionDispatch::Routing::Mapper
     end
   end
 
+  def contenticus_route_cms_sitemap(option = {})
+    scope module: :contenticus, as: :contenticus do
+      get "sitemap" => "sitemap#index"
+    end
+  end
+
   def contenticus_route_cms(option = {})
     scope :module => :contenticus, :as => :contenticus do
-       get '(*cms_path)' => 'pages#show', :as => 'render_page', action: '/:format'
+      get '(*cms_path)' => 'pages#show', :as => 'render_page', action: '/:format'
     end
   end
 
   def contenticus_route(identifier, options = {})
     send("contenticus_route_#{identifier}", options)
   end
-
 end
