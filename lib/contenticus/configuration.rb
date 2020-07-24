@@ -1,7 +1,6 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 class Contenticus::Configuration
-
   # All pages will return no_index
   # e.g. for staging environments
   attr_accessor :meta_no_index
@@ -27,5 +26,4 @@ class Contenticus::Configuration
     @meta_title_max_characters = 60
     @admin_base_controller = "ApplicationController"
   end
-
 end

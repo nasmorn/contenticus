@@ -4,7 +4,7 @@ $:.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name          = "contenticus"
-  s.version       = "0.7.3"
+  s.version       = "0.8.0"
   s.authors       = ["Roman Almeida"]
   s.email         = ["post@romanalmeida.com"]
   s.homepage      = "http://github.com/nasmorn/contenticus"
