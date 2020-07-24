@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gemspec
-gem "rails", ">= 5.2.4"
+gem "rails", ">= 6.0.3.2"
 gem "jcrop-rails-v2"
 gem "turbolinks"
 gem "rake", ">= 10.4"
