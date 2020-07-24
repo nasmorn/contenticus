@@ -17,7 +17,7 @@ Add `initializers/dragonfly.rb` if you want to save images to a cloud bucket
 
 Add `contenticus_route :cms_admin` to `routes.rb`
 
-If you use sprockets add these lines to your `manifest.js`
+If you use sprockets 4.0 add these lines to your `manifest.js`
 
 ```
   //= link contenticus/admin/application.css
