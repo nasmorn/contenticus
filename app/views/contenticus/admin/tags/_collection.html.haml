@@ -6,6 +6,7 @@
         = content_tag(:button, class: "btn btn-primary", onclick: "return add_fields(this, \"tags\", \"#{escape_javascript(fields)}\")") do
           %span.glyphicon.glyphicon-plus
       .h3.panel-title
+        Collection
         = tag.name
 
     .panel-body.sortable.fields-wrapper.collapse.in{id: tag.dom_id}

@@ -1,10 +1,10 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 $:.unshift File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name          = "contenticus"
-  s.version       = "0.8.0"
+  s.version       = "0.8.1"
   s.authors       = ["Roman Almeida"]
   s.email         = ["post@romanalmeida.com"]
   s.homepage      = "http://github.com/nasmorn/contenticus"

@@ -15,7 +15,7 @@ window.CMS.init = ->
   $('.jcrop').each ->
     CMS.initJcrop($(this))
   $(document).on 'click', '.remove-collectible', ->
-    $(this).parents('.collectible').remove()
+    $(this).closest('.collectible').remove()
 
 window.CMS.sortable_list = ->
   $('.sortable').sortable

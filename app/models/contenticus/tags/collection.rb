@@ -81,6 +81,9 @@ class Collection < Base
     true
   end
 
+  def collectible?
+    true
+  end
 end
 end
 end
